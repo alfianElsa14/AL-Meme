@@ -1,0 +1,103 @@
+@import '@styles/base';
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+    padding: 10px;
+
+    @include apply-at-md-size {
+        padding: 70px;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        background-color: $color-marine-blue;
+        border: 5px solid rgb(0, 83, 160);
+        border-radius: 10px;
+        width: 500px;
+        padding: 10px 10px;
+        color: $color-white;
+
+        @include apply-at-md-size {
+            padding: 30px 30px;
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 20px;
+
+            @include apply-at-md-size {
+                font-size: 25px;
+            }
+        }
+
+        .header {
+            font-size: 10px;
+
+            @include apply-at-md-size {
+                font-size: 15px;
+            }
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 30px;
+
+            span {
+                font-size: 15px;
+                font-weight: 400;
+            }
+        }
+
+        .profit {
+            p {
+                font-size: 10px;
+
+                @include apply-at-md-size {
+                    font-size: 15px;
+                }
+
+                .check {
+                    font-size: 15px;
+
+                    @include apply-at-md-size {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+
+        .buttonPremium {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 20px;
+
+            @include apply-at-md-size {
+                padding-top: 30px;
+            }
+
+            button {
+                background-color: rgb(173, 0, 0);
+                color: $color-white;
+                font-weight: 500;
+                border: none;
+                width: 200px;
+                height: 35px;
+                font-size: 15px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: rgb(233, 0, 0);
+            }
+        }
+
+
+    }
+}

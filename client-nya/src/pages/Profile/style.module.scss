@@ -1,0 +1,203 @@
+@import '@styles/base';
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4rem;
+    margin-top: 70px;
+
+    .profileWrapper {
+        padding: 1rem 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        display: flex;
+        width: fit-content;
+        justify-content: center;
+        align-items: center;
+        background-color: $color-marine-blue;
+        color: $color-white;
+        border: 2px solid $color-violet-dark;
+        border-radius: 5px;
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .countdown {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            padding-top: 10px;
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: 500;
+            padding-top: 10px;
+        }
+
+        .email {
+            color: rgb(180, 180, 180);
+            font-style: italic;
+            font-size: 15px;
+            padding-top: 10px;
+        }
+
+        .role {
+            font-weight: 300;
+            padding-top: 10px;
+        }
+
+        button {
+            padding: 0.6rem;
+            font-size: 14px;
+            background-color: green;
+            color: $color-white;
+            border: none;
+            border-radius: 4px;
+            width: 200px;
+            font-weight: 400;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .bePremium {
+            background-color: rgb(173, 0, 0);
+        }
+
+        .bePremium:hover {
+            background-color: rgb(233, 0, 0);
+        }
+    }
+
+    .cardContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 30px;
+
+        h1 {
+            color: $color-white;
+            background-color: $color-marine-blue;
+            border-radius: 30%;
+        }
+
+        .memeCount {
+            color: $color-white;
+            background-color: $color-marine-blue;
+        }
+
+        .card {
+            margin-top: 50px;
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
+
+            @include apply-at-md-size {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .cardList {
+                border: 3px solid $color-violet-dark;
+                background-color: $color-marine-blue;
+                display: flex;
+                color: $color-white;
+                overflow: hidden;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                max-width: 200px;
+                cursor: pointer;
+                gap: 5px;
+                transition: all 0.3s;
+
+                img {
+                    max-width: 100px;
+                    object-fit: cover;
+                    border: none;
+                    border-radius: 5px;
+    
+                    @include apply-at-md-size {
+                        max-width: 200px;
+                    }
+                }
+
+                .data {
+                    .title {
+                        font-size: 15px;
+                        font-weight: 700;
+                    }
+
+                    .status {
+                        font-size: 10px;
+                        font-style: italic;
+                    }
+                }
+
+                .button {
+                    display: flex;
+                    padding-bottom: 20px;
+                    gap: 10px;
+                    justify-content: center;
+                    align-items: center;
+
+                    .delete {
+                        cursor: pointer;
+                        color: rgb(147, 0, 0);
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    .edit {
+                        cursor: pointer;
+                        color: $color-harlequin-dark-shade;
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    .download {
+                        cursor: pointer;
+                        color: rgb(12, 168, 12);
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    .delete:hover {
+                        cursor: pointer;
+                        color: red;
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    .edit:hover {
+                        cursor: pointer;
+                        color: rgb(164, 77, 77);
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    .download:hover {
+                        cursor: pointer;
+                        color: green;
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+
+            .cardList:hover {
+                transform: scale(1.10);
+                color: $color-black;
+                background: $color-strawberry-red
+            }
+        }
+    }
+}

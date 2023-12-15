@@ -1,0 +1,37 @@
+@import '@styles/base';
+
+.container {
+    padding: 20px 30px;
+    margin-top: 60px;
+
+    .search {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+
+        input {
+            width: 1000px;
+            height: 40px;
+            border: none;
+            border-radius: 5px 0px 0px 5px;
+            padding: 20px;
+
+        }
+
+        button {
+            background-color: #8CCA3C;
+            color: $color-black;
+            border: none;
+            height: 40px;
+            cursor: pointer;
+            width: 136px;
+            border-radius: 0px 5px 5px 0px;
+        }
+
+        button:hover {
+            background-color: #407000;
+            color: $color-white;
+        }
+    }
+}

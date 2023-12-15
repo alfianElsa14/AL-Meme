@@ -1,0 +1,303 @@
+@import '@styles/base';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $color-white;
+    margin-top: 70px;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    width: 100%;
+
+    h1 {
+        color: $color-white;
+        background-color: $color-marine-blue;
+        border-radius: 30%;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: $color-marine-blue;
+        border: 5px solid $color-violet-dark;
+        border-radius: 10px;
+        padding: 20px;
+        gap: 10px;
+        border-radius: 3px;
+        align-items: center;
+
+
+        @include apply-at-md-size {
+            display: flex;
+            flex-direction: row;
+            align-items: start;
+            gap: 40px;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+
+
+            img {
+                max-width: 250px;
+                max-height: 250px;
+
+                @include apply-at-md-size {
+                    max-width: 375px;
+                    max-height: 375px;
+
+                }
+            }
+
+            .like {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                @include apply-at-md-size {
+                    padding-top: 30px;
+                }
+
+                .iconLike {
+                    color: $color-aqua;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .formContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            .form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+
+                input {
+                    width: 100%;
+                    height: 30px;
+                    border: 2px solid $color-black;
+                    border-radius: 5px;
+                    margin-bottom: 20px;
+                }
+
+                .formText {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+                }
+            }
+
+            .button {
+                display: flex;
+                justify-content: space-between;
+                gap: 100px;
+
+                button {
+                    border: none;
+                    height: 40px;
+                    border-radius: 5px;
+                    font-size: 10px;
+                    font-weight: 500;
+                    cursor: pointer;
+
+                    @include apply-at-md-size {
+                        font-size: 16px;
+                    }
+                }
+
+                .generate {
+                    background-color: rgb(0, 255, 0);
+                }
+
+                .generate:hover {
+                    background-color: rgb(2, 149, 2);
+                    color: $color-white;
+                }
+
+                .add {
+                    background-color: rgb(0, 149, 255);
+                }
+
+                .add:hover {
+                    background-color: $color-violet-dark;
+                    color: $color-white;
+                }
+
+            }
+        }
+    }
+
+    .comment {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 350px;
+        width: 100%;
+        border: 5px solid $color-violet-dark;
+        border-radius: 10px;
+        margin-top: 50px;
+        padding: 20px;
+        background-color: $color-marine-blue;
+        margin-bottom: 20px;
+
+        @include apply-at-md-size {
+            max-width: 100%;
+            width: 50%;
+        }
+
+        h4 {
+            margin-bottom: 20px;
+        }
+
+        .commentList {
+            display: flex;
+            justify-content: space-between;
+            border: 3px solid $color-violet-dark;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 25px 0;
+            width: 100%;
+
+
+            .userComment {
+                display: flex;
+                align-items: center;
+                padding: 0px 10px;
+                gap: 15px;
+                overflow: hidden;
+
+                @include apply-at-md-size {
+                    padding: 0px 30px;
+                    gap: 30px;
+                }
+
+                img {
+                    width: 23px;
+                    height: 23px;
+                    border-radius: 50%;
+                    border: none;
+
+                    @include apply-at-md-size {
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+
+
+                .isiComment {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    gap: 10px;
+                    overflow: hidden;
+
+                    .username {
+                        font-weight: 700;
+                        font-size: 13px;
+                        margin: 0;
+
+                        @include apply-at-md-size {
+                            font-size: 20px;
+                        }
+                    }
+
+                    .many {
+                        word-wrap: break-word;
+                        display: block;
+                        font-size: 10px;
+
+                        @include apply-at-md-size {
+                            font-size: 15px;
+                        }
+                    }
+                }
+            }
+
+            .date {
+                margin-right: 5px;
+                display: flex;
+                align-items: center;
+
+                @include apply-at-md-size {
+                    margin-right: 20px;
+                }
+
+                p {
+                    margin-right: 5px;
+                    font-size: 5px;
+
+                    @include apply-at-md-size {
+                        margin-right: 10px;
+                        font-size: 13px;
+                    }
+                }
+
+                button {
+                    border: none;
+                    background-color: transparent;
+
+                    .delete {
+                        width: 10px;
+                        height: 10px;
+                        cursor: pointer;
+                        color: red;
+
+                        @include apply-at-md-size {
+                            width: 25px;
+                            height: 25px;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .delete:hover {
+                        color: rgb(207, 0, 0);
+                    }
+                }
+            }
+        }
+
+        .formComment {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 20px;
+
+            .formText {
+                resize: none;
+
+                textarea {
+                    width: 100%;
+                    height: 50px;
+
+                }
+            }
+
+            button {
+                margin-top: 20px;
+                width: 140px;
+                height: 50px;
+                border: none;
+                border-radius: 5px;
+                background-color: rgb(0, 210, 133);
+                font-weight: 500;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: rgb(0, 107, 68);
+                color: $color-white;
+            }
+        }
+    }
+}

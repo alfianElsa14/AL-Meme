@@ -1,0 +1,36 @@
+@import './base.scss';
+:root {
+  font-family: Poppins, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  @include apply-at-md-size {
+    font-size: 120%;
+  }
+
+  @include apply-at-lg-size {
+    font-size: 125%;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  background-image: url('https://www.teahub.io/photos/full/12-123106_rick-and-morty-background.png');
+  background-size: cover;
+  background-repeat: repeat;
+  min-height: 100vh;
+}
+
+html[data-theme='light'] {
+  @include light-theme;
+}
+
+html[data-theme='dark'] {
+  @include dark-theme;
+}

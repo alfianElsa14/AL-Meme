@@ -1,0 +1,6 @@
+export const EDIT_MEME = 'EditMeme/EDIT_MEME'
+export const GENERATE_EDIT_MEME = 'EditMeme/GENERATE_EDIT_MEME'
+export const GET_MY_MEME_BY_ID = 'EditMeme/GET_MY_MEME_BY_ID'
+export const SET_MY_MEME_BY_ID = 'EditMeme/SET_MY_MEME_BY_ID'
+export const SET_BOX_EDIT = 'EditMeme/SET_BOX_EDIT'
+export const SET_IMAGE_EDIT = 'EditMeme/SET_IMAGE_EDIT'

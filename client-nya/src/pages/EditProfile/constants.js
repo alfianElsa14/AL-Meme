@@ -1,0 +1,1 @@
+export const EDIT_USER = 'EditUser/EDIT_USER'

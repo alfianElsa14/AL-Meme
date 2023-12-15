@@ -1,0 +1,78 @@
+@import '@styles/base';
+
+.container {
+    @include center;
+    height: 90vh;
+    margin-top: 70px;
+    
+    .wrapper {
+        padding: 20px;
+        width: 80%;
+        max-width: 20rem;
+        border-radius: 10px;
+        box-shadow: 0 0 20px $color-black;
+        background-color: $color-aqua;
+        .title {
+            text-align: center;
+            padding: 0.8rem;
+            font-weight: 700;
+        }
+
+        form {
+            @include directionY;
+
+            .inputItem {
+                @include directionY;
+
+                label {
+                    font-size: 0.8rem;
+                    font-weight: 500;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                .error {
+                    color: red;
+                    font-size: 0.6rem;
+                    font-weight: 400;
+                }
+
+                input {
+                    padding: 0.4rem;
+                    font-size: 1rem;
+                    margin-bottom: 1.5rem;
+                    border-radius: 5px;
+                    background-color: rgb(211, 211, 211);
+                }
+            }
+
+            button {
+                padding: 0.5rem;
+                background-color: green;
+                color: $color-white;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .buttonRegister {
+                margin: 1rem 0 1rem;
+                cursor: pointer;
+            }
+        }
+
+        p {
+            font-size: 12px;
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .container {
+
+        .wrapper {
+            padding: 10px;
+            width: 80%;
+        }
+    }
+}

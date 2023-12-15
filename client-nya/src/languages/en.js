@@ -1,0 +1,50 @@
+export default {
+  app_greeting: 'Hi from Web!',
+  app_title_header: 'AL`Meme',
+  app_not_found: 'Page not found',
+  app_lang_id: 'Indonesian',
+  app_lang_en: 'English',
+  app_popup_error_title: 'Something went wrong!',
+  app_popup_error_message: 'Sorry, an error has occurred. Please try again later',
+  app_popup_close_button_label: 'Close',
+
+  app_register: 'Register',
+  app_change : 'Change',
+  app_username: 'username',
+  app_already_have_an_account: 'already have an account?',
+  app_here: 'here',
+
+  app_login: 'Log in',
+  app_login_with_google: 'Log in with Google',
+  app_dont_have_account: 'Dont have an account? ',
+
+  app_generate_meme: 'Generate Meme',
+  app_create_meme: 'Create Meme',
+  app_likes: 'Likes',
+  app_title: 'Title',
+  app_generate: 'Generate Meme',
+  app_add: 'Add Meme',
+  app_comments: 'Comments',
+  app_days: 'days',
+  app_hours: 'hours',
+  app_minutes: 'minutes',
+  app_seconds: 'seconds',
+  app_ago: 'ago',
+  app_month: 'month',
+
+  app_premium_ended: 'Your premium period ends in:',
+  app_edit_profile: 'Edit profile',
+  app_change_password: 'Change Password',
+  app_my_meme_list: 'My Meme list',
+  app_save: 'Save',
+
+  app_old_password: 'Old password',
+  app_new_password: 'New password',
+  app_be_premium: 'Be premium',
+
+  app_go_premium: 'Go premium and make as many memes as you want .',
+  app_access_meme: 'Access 50+ Exclusive Meme Templates!',
+  app_create_as_many: 'Create as many memes as you want without limits',
+  app_can_edit_meme: 'You can edit the memes you have created',
+
+};
