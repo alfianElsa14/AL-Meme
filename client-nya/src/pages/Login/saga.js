@@ -59,7 +59,6 @@ export function* doGoogleLogin() {
         const response = yield call(googleLogin, {
             email: user.email,
             username: user.displayName,
-            imageUrl: user.photoURL,
         });
 
         if (!response) {

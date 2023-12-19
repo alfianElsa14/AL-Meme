@@ -17,14 +17,27 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DownloadIcon from '@mui/icons-material/Download';
 import Swal from 'sweetalert2';
 import { Tooltip } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import classes from './style.module.scss'
 
-function Profile({ user, userProfile, myMemes, role }) {
+function Profile({ userProfile, myMemes, role }) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const userData = user.data
-    const fileInputRef = useRef(null);
     const [countdown, setCountdown] = useState(null);
+    const [open, setOpen] = useState(false);
+    const [selectedMemeId, setSelectedMemeId] = useState(null);
+
+    const handleClickOpen = (memeId) => {
+        setSelectedMemeId(memeId);
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setSelectedMemeId(null);
+        setOpen(false);
+    };
 
 
     const handleToEditMeme = (memeId) => {
@@ -82,9 +95,9 @@ function Profile({ user, userProfile, myMemes, role }) {
     useEffect(() => {
         if (countdown?.days === 0 && countdown?.hours === 0 && countdown?.minutes === 0 && countdown?.seconds === 0) {
             if (role === 'premium') {
-                console.log(role, "ke panggil");
+
                 if (userProfile.role === 'premium') {
-                    dispatch(updateStatusUser(() => navigate('/')));
+                    dispatch(updateStatusUser(() => navigate('/profile')));
                 } else {
                     console.log("Pengguna sudah menjadi basic");
                 }
@@ -142,9 +155,13 @@ function Profile({ user, userProfile, myMemes, role }) {
                 <div className={classes.card}>
                     {
                         myMemes.map((el) => (
-                            <div key={el.id} className={classes.cardList}
+                            <div
+                                key={el.id}
+                                className={classes.cardList}
                             >
-                                <img src={el.imageUrl} alt="" />
+                                <img src={el.imageUrl} alt=""
+                                    onClick={() => handleClickOpen(el.id)}
+                                />
                                 <div className={classes.data}>
                                     <p className={classes.title}>{el.title}</p>
                                     <p className={classes.status}>{el.Meme.status}</p>
@@ -168,12 +185,39 @@ function Profile({ user, userProfile, myMemes, role }) {
                                             onClick={() => handleDownload(el.imageUrl, `${el.title}.jpg`)}
                                         />
                                     </Tooltip>
+
                                 </div>
+                                <Dialog open={open} onClose={handleClose}>
+                                    {selectedMemeId && (
+                                        <>
+                                            <img
+                                                src={
+                                                    myMemes.find((meme) => meme.id === selectedMemeId)?.imageUrl
+                                                }
+                                                alt=""
+                                                className={classes.popUpImage}
+                                            />
+                                            <IconButton
+                                                aria-label="close"
+                                                onClick={handleClose}
+                                                sx={{
+                                                    position: 'absolute',
+                                                    right: 8,
+                                                    top: 8,
+                                                    color: (theme) => theme.palette.grey[500],
+                                                }}
+                                            >
+                                                <CloseIcon />
+                                            </IconButton>
+                                        </>
+                                    )}
+                                </Dialog>
                             </div>
                         ))
                     }
                 </div>
             </div>
+
         </div>
     )
 }

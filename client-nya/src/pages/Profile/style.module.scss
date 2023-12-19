@@ -124,7 +124,7 @@
                     object-fit: cover;
                     border: none;
                     border-radius: 5px;
-    
+
                     @include apply-at-md-size {
                         max-width: 200px;
                     }
@@ -190,6 +190,7 @@
                         width: 30px;
                         height: 30px;
                     }
+
                 }
             }
 
@@ -200,4 +201,19 @@
             }
         }
     }
+}
+
+.popUpImage {
+
+    max-width: 300px;
+    object-fit: cover;
+    border: none;
+    border-radius: 5px;
+
+    @include apply-at-md-size {
+        max-width: 350px;
+
+    }
+
+
 }

@@ -1,16 +1,16 @@
 [
     {
-        "username": "alfian",
-        "email": "alfian@gmail.com",
+        "username": "Rojak",
+        "email": "ajahrojak74@gmail.com",
         "password": "1234567",
-        "imageUrl" : "https://png.pngtree.com/png-clipart/20230305/original/pngtree-muslim-boy-profile-photo-png-image_8973295.png",
-        "role": "premium"
+        "imageUrl" : "public\\assets\\download1.jpg",
+        "role": "basic"
     },
     {
-        "username": "uya",
-        "email": "uya@gmail.com",
+        "username": "Rojiah",
+        "email": "rojiahya84@gmail.com",
         "password": "1234567",
-        "imageUrl" : "https://png.pngtree.com/png-clipart/20230305/original/pngtree-muslim-boy-profile-photo-png-image_8973295.png",
+        "imageUrl" : "public\\assets\\download2.jpg",
         "role": "basic"
     }
 ]

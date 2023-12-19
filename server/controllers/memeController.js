@@ -1,4 +1,5 @@
 const { handleInternalError, handleNotFoundError } = require('../helper/errorHandler');
+// const redisClient = require('../helper/redisClient');
 const { Meme } = require('../models')
 const axios = require("axios");
 
@@ -6,8 +7,15 @@ exports.getAllMeme = async (req, res) => {
     try {
         const page = req.query.page || 1;
         const pageSize = 20;
+        // const cacheKey = `allMemes:${page}`
 
-        // Menghitung offset berdasarkan nomor halaman dan ukuran halaman
+        // const cachedData = await redisClient.get(cacheKey);
+
+        // if (cachedData) {
+        //     const parsedData = JSON.parse(cachedData)
+        //     return res.status(200).json(parsedData)
+        // }
+
         const offset = (page - 1) * pageSize;
 
         const dataMeme = await Meme.findAndCountAll({
@@ -18,7 +26,6 @@ exports.getAllMeme = async (req, res) => {
             offset: offset,
         });
 
-        // Dapatkan data sebelumnya jika bukan halaman pertama
         const previousData = page > 1 ? await Meme.findAll({
             attributes: {
                 exclude: ['text1', 'text2', 'text3', 'text4', 'text5', 'createdAt', 'updatedAt']
@@ -26,8 +33,13 @@ exports.getAllMeme = async (req, res) => {
             limit: offset,
         }) : [];
 
-        // Gabungkan data sebelumnya dengan data saat ini
         const allDataMeme = previousData.concat(dataMeme.rows);
+
+        // redisClient.setex(cacheKey, 3600, JSON.stringify({
+        //     cached: true,
+        //     count: dataMeme.count + (page - 1) * pageSize,
+        //     rows: allDataMeme,
+        // }));
 
         res.status(200).json({
             count: dataMeme.count + (page - 1) * pageSize,

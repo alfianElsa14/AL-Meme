@@ -11,6 +11,7 @@ import { editUser } from './actions';
 import { selectUserProfile } from '@pages/Profile/selector';
 
 import classes from './style.module.scss'
+import Avatar from '@mui/material/Avatar';
 
 function EditProfile({ userProfile }) {
     const dispatch = useDispatch();
@@ -63,7 +64,7 @@ function EditProfile({ userProfile }) {
                 </h1>
                 <form onSubmit={handleSubmit}>
                     <div className={classes.picture}>
-                        <img src={tempImage || `${config.api.host}${userProfile.imageUrl}`} alt="" />
+                        <img src={tempImage || `${config.api.host}${userProfile.imageUrl}` } alt="" />
                         <label htmlFor="imageUrl" className={classes.customFileButton}>
                             <button>
                                 <FormattedMessage id='app_change' />

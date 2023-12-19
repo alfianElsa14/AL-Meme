@@ -111,7 +111,6 @@ exports.login = async (req, res) => {
         const { id, email, role } = dataUser
 
         let access_token = sign({ id, email, role })
-        let userEmail = dataUser.email
 
         res.status(201).json({ data: dataUser, access_token })
     } catch (error) {
@@ -122,7 +121,7 @@ exports.login = async (req, res) => {
 
 exports.googleLogin = async (req, res) => {
     try {
-        const { email, username, imageUrl } = req.body
+        const { email, username } = req.body
 
         const [created] = await User.findOrCreate({
             where: {
@@ -131,7 +130,7 @@ exports.googleLogin = async (req, res) => {
             defaults: {
                 username,
                 email,
-                imageUrl,
+                imageUrl: false,
                 password: await hash('1234567'),
                 role: "basic",
                 verified: true
@@ -322,7 +321,7 @@ exports.statusUser = async (req, res) => {
         const updateRole = await User.update(
             {
                 role: 'premium',
-                premiumDate: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000),
+                premiumDate: new Date(new Date().getTime() + 1 * 60 * 1000),
             },
             {
                 where: {

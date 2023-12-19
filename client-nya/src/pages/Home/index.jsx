@@ -46,9 +46,9 @@ const Home = ({ memes, memesCount, role }) => {
         />
       </div>
       <InfiniteScroll
-        dataLength={memes.length} // Penting untuk mencegah memuat data yang sama berkali-kali
+        dataLength={memes.length}
         next={fetchMoreData}
-        hasMore={memes.length < memesCount} // Sesuaikan kondisi ini berdasarkan data Anda
+        hasMore={memes.length < memesCount} 
         endMessage={<p>Tidak ada meme lebih lanjut untuk dimuat</p>}
       >
         <Card memes={filterMemesBySearch()} role={role} />

@@ -3,21 +3,21 @@ import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Divider, ListItemIcon } from '@mui/material';
 
 import { setLocale } from '@containers/App/actions';
 import config from '@config/index';
 import { logout } from '@containers/Client/actions';
 
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Divider, ListItemIcon } from '@mui/material';
 import profileIcon from '@static/images/profile.svg';
 import logoutIcon from '@static/images/logout.svg';
 import classes from './style.module.scss';
 
-const Navbar = ({ login, user, title, locale, theme }) => {
+const Navbar = ({ login, user, title, locale }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [menuPosition, setMenuPosition] = useState(null);
@@ -57,7 +57,7 @@ const Navbar = ({ login, user, title, locale, theme }) => {
     <div className={classes.headerWrapper} data-testid="navbar">
       <div className={classes.contentWrapper}>
         <div className={classes.logoImage} onClick={goHome}>
-          <img src="/vite.svg" alt="logo" className={classes.logo} />
+          <img src="/rocket.svg" alt="logo" className={classes.logo} />
           <div className={classes.title}>{title}</div>
         </div>
         <div className={classes.toolbar}>

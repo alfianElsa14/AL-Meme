@@ -1,7 +1,6 @@
 const { handleInternalError, handleValidationError, handleNotFoundError } = require('../helper/errorHandler');
 const { myMeme, Meme, User } = require('../models')
 const joi = require('joi');
-const axios = require("axios");
 
 exports.getMyMeme = async (req, res) => {
     try {
@@ -13,9 +12,6 @@ exports.getMyMeme = async (req, res) => {
                 {
                     model: Meme
                 },
-                {
-                    model: User
-                }
             ]
         })
         res.status(200).json(memeData)
@@ -38,9 +34,6 @@ exports.getMyMemeById = async (req, res) => {
                 {
                     model: Meme
                 },
-                {
-                    model: User
-                }
             ]
         })
 

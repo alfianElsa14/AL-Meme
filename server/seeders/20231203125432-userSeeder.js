@@ -20,7 +20,6 @@ module.exports = {
       el.createdAt = new Date()
       el.updatedAt = new Date()
       el.verified = true
-      el.verifyToken = Crypto.randomBytes(10).toString("hex");
 
       return el
     })

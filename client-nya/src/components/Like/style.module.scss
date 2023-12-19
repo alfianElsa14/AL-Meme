@@ -1,0 +1,16 @@
+@import '@styles/base';
+
+.like {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    @include apply-at-md-size {
+        padding-top: 30px;
+    }
+
+    .iconLike {
+        color: $color-aqua;
+        cursor: pointer;
+    }
+}

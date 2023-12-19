@@ -6,16 +6,12 @@ import PropTypes from 'prop-types';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { selectBox, selectComment, selectImageMeme, selectLike, selectMeme } from './selector';
-import { addComment, addLike, addMyMemes, deleteComment, generateMeme, getAllComment, getLike, getMemeById, removeLike } from './actions';
+import { addMyMemes, generateMeme, getAllComment, getLike, getMemeById } from './actions';
 import { selectRole, selectUser } from '@containers/Client/selectors';
-import { calculateTimeDifference } from '@utils/calculateDate';
-import config from '@config/index';
 import { selectMyMeme, selectUserProfile } from '@pages/Profile/selector';
+import Like from '@components/Like';
+import Comment from '@components/Comment';
 
-import DeleteIcon from '@mui/icons-material/Delete';
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
-import { IconButton } from '@mui/material';
 import Swal from 'sweetalert2';
 import classes from './style.module.scss'
 
@@ -27,11 +23,10 @@ function MemeDetail({ comments, meme, user, box, imageMeme, likes, myMemes, role
     const userId = user.data.id
 
     const [textInputs, setTextInputs] = useState(Array(box).fill(''));
-    const [newComment, setNewComment] = useState('');
     const [memeTitle, setMemeTitle] = useState(meme.title || '');
 
     const handleAddMyMeme = () => {
-        if (myMemes.length === 5 && role !== 'premium') {
+        if (myMemes.length >= 5 && role !== 'premium') {
             Swal.fire('Limit anda sudah habis');
             navigate('/bePremium');
         } else {
@@ -43,27 +38,6 @@ function MemeDetail({ comments, meme, user, box, imageMeme, likes, myMemes, role
             dispatch(addMyMemes(id, data, navigate));
         }
     };
-
-    const handleCommentSubmit = (e) => {
-        e.preventDefault();
-        dispatch(addComment(id, { comment: newComment }));
-        setNewComment('');
-    };
-
-
-    const handleDelete = (commentId) => {
-        dispatch(deleteComment(commentId, id))
-    }
-
-    const userLiked = likes?.dataLike?.some((like) => like?.userId === userId);
-
-    const handleLikeSubmit = () => {
-        if (userLiked) {
-            dispatch(removeLike(id));
-        } else {
-            dispatch(addLike(id));
-        }
-    }
 
     useEffect(() => {
         dispatch(getMemeById(id));
@@ -98,20 +72,7 @@ function MemeDetail({ comments, meme, user, box, imageMeme, likes, myMemes, role
             <div className={classes.content}>
                 <div className={classes.header}>
                     <img src={imageMeme} alt="" />
-                    <div className={classes.like}>
-                        {userLiked ? (
-                            <ThumbUpAltIcon
-                                onClick={handleLikeSubmit}
-                                className={classes.iconLike}
-                            />
-                        ) : (
-                            <ThumbUpOffAltIcon
-                                onClick={handleLikeSubmit}
-                                className={classes.iconLike}
-                            />
-                        )}
-                        <p>{likes.like} <FormattedMessage id='app_likes' /></p>
-                    </div>
+                    <Like likes={likes} userId={userId}/>
                 </div>
                 <div className={classes.formContainer}>
                     <h3><FormattedMessage id='app_create_meme' /></h3>
@@ -147,59 +108,7 @@ function MemeDetail({ comments, meme, user, box, imageMeme, likes, myMemes, role
                     </div>
                 </div>
             </div>
-            <div className={classes.comment}>
-                <h4><FormattedMessage id='app_comments' /></h4>
-                {
-                    comments.map((el) => (
-                        <div key={el.id} className={classes.commentList}>
-                            <div className={classes.userComment}>
-                                <div className={classes.picture}>
-                                    <img src={`${config.api.host}${el.User.imageUrl}`} alt="" />
-                                </div>
-                                <div className={classes.isiComment}>
-                                    <p className={classes.username}>{el.User.username}</p>
-                                    <div className={classes.many}>{el.comment}</div>
-                                </div>
-                            </div>
-                            <div className={classes.date}>
-                                {
-                                    (() => {
-                                        const { value, unit } = calculateTimeDifference(el.createdAt);
-                                        return (
-                                            <p>
-                                                <span>
-                                                    {value} <FormattedMessage id={`app_${unit}`} /> <FormattedMessage id="app_ago" />
-                                                </span>
-                                            </p>
-                                        );
-                                    })()
-                                }
-                                {
-                                    userId === el.User.id && (
-                                        <IconButton
-                                            onClick={() => handleDelete(el.id)}>
-                                            <DeleteIcon className={classes.delete} />
-                                        </IconButton>
-                                    )
-                                }
-                            </div>
-                        </div>
-                    ))
-                }
-                <form action="" className={classes.formComment}
-                    onSubmit={handleCommentSubmit} >
-                    <textarea
-                        className={classes.formText}
-                        name=""
-                        id=""
-                        cols="30"
-                        rows="10"
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                    />
-                    <button type='submit'><FormattedMessage id="app_comments" /></button>
-                </form>
-            </div>
+            <Comment comments={comments} userId={userId}/>
         </div>
     )
 }
