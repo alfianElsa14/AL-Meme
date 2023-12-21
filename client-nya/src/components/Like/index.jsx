@@ -30,7 +30,7 @@ function Like({ likes, userId }) {
         <ThumbUpOffAltIcon onClick={handleLikeSubmit} className={classes.iconLike} />
       )}
       <p>
-        {likes.like} <FormattedMessage id='app_likes' />
+        {likes?.like} <FormattedMessage id='app_likes' />
       </p>
     </div>
   );

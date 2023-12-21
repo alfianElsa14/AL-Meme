@@ -45,7 +45,7 @@ export function* doGenerateMeme({ id, data }) {
 export function* doGetAllComment({ id }) {
     try {
         const response = yield call(getAllComment, id)
-        yield put(setAllComment(response))
+        yield put(setAllComment(response.comments))
     } catch (error) {
         console.log(error);
     }

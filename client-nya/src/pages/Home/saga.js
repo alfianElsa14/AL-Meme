@@ -16,7 +16,7 @@ function* setLoadingWithInterval(value, interval) {
 function* doGetAllMeme({ page }) {
     yield put(setLoading(true))
     try {
-        yield* setLoadingWithInterval(true, 2000);
+        yield* setLoadingWithInterval(true, 1000);
         const response = yield call(getAllMeme, page)
         yield put(setAllMeme(response.rows))
         yield put(setMemesCount(response.count))

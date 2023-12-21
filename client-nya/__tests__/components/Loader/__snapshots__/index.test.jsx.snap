@@ -11,7 +11,7 @@ exports[`Component Loader Should match with snapshot 1`] = `
       >
         <img
           alt="Loading"
-          src="/loader.svg"
+          src="https://media.istockphoto.com/id/1189776281/id/vektor/kepala-kucing-mengenakan-kacamata-berwarna-warni-pada-vektor-kucing-keren-dan-funky.jpg?s=1024x1024&w=is&k=20&c=TI0NQxx1_4YIn015VMAl5XdnScpKkPfcXDl5dlMvRM4="
         />
       </div>
     </div>
@@ -23,7 +23,7 @@ exports[`Component Loader Should match with snapshot 1`] = `
     >
       <img
         alt="Loading"
-        src="/loader.svg"
+        src="https://media.istockphoto.com/id/1189776281/id/vektor/kepala-kucing-mengenakan-kacamata-berwarna-warni-pada-vektor-kucing-keren-dan-funky.jpg?s=1024x1024&w=is&k=20&c=TI0NQxx1_4YIn015VMAl5XdnScpKkPfcXDl5dlMvRM4="
       />
     </div>
   </div>,

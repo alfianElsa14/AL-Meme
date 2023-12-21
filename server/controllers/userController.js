@@ -144,7 +144,7 @@ exports.googleLogin = async (req, res) => {
             role: created.role
         });
 
-        res.status(200).json({ access_token: token, data: created });
+        res.status(201).json({ access_token: token, data: created });
     } catch (error) {
         console.log(error);
         return handleInternalError(res)
@@ -228,7 +228,7 @@ exports.editUser = async (req, res) => {
 
         } else {
 
-            return res.status(500).json({ message: 'Failed to update user' });
+            return res.status(400).json({ message: 'Failed to update user' });
 
         }
     } catch (error) {
@@ -317,11 +317,10 @@ exports.statusUser = async (req, res) => {
             }
         }
 
-
         const updateRole = await User.update(
             {
                 role: 'premium',
-                premiumDate: new Date(new Date().getTime() + 1 * 60 * 1000),
+                premiumDate: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000),
             },
             {
                 where: {
@@ -381,7 +380,7 @@ exports.midtransPayment = async (req, res) => {
         };
 
         const midtransToken = await snap.createTransaction(parameter)
-        res.status(200).json(midtransToken)
+        res.status(201).json(midtransToken)
     } catch (error) {
         console.log(error);
         return handleInternalError(res)

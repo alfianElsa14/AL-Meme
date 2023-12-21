@@ -4,6 +4,7 @@ const { sequelize } = require('../../models/index');
 const { queryInterface } = sequelize;
 const path = require('path');
 const { hash } = require('../../helper/bcrypt');
+const { sign } = require('../../helper/jwt');
 
 const dummyUser = [{
     username: 'mikail',
@@ -22,7 +23,10 @@ let token;
 
 beforeAll(async () => {
     try {
-        await queryInterface.bulkInsert(`Users`, dummyUser, null)
+        const responseUsers = await queryInterface.bulkInsert(`Users`, dummyUser, null)
+
+        const { email, role } = dummyUser[0]
+        token = sign({ id: responseUsers, email, role })
     } catch (error) {
         console.log(error);
     }
@@ -173,7 +177,7 @@ describe('change password user', () => {
             newPassword: '123456789'
         }
 
-        const response = (await request(app).put('/api/users/changePassword').set('authorization', `Bearer ${token}`).send(thisPassword))
+        const response = await request(app).put('/api/users/changePassword').set('authorization', `Bearer ${token}`).send(thisPassword)
 
         expect(response.status).toBe(200)
         expect(response.body.message).toBe('Change password successfully')
@@ -186,7 +190,7 @@ describe('change password user', () => {
             newPassword: ''
         }
 
-        const response = (await request(app).put('/api/users/changePassword').set('authorization', `Bearer ${token}`).send(thisPassword))
+        const response = await request(app).put('/api/users/changePassword').set('authorization', `Bearer ${token}`).send(thisPassword)
 
         expect(response.status).toBe(400)
         expect(response.body.message).toBe('"newPassword" is not allowed to be empty')
@@ -199,7 +203,7 @@ describe('change password user', () => {
             newPassword: '123'
         }
 
-        const response = (await request(app).put('/api/users/changePassword').set('authorization', `Bearer ${token}`).send(thisPassword))
+        const response = await request(app).put('/api/users/changePassword').set('authorization', `Bearer ${token}`).send(thisPassword)
 
         expect(response.status).toBe(400)
         expect(response.body.message).toBe('"newPassword" length must be at least 6 characters long')
@@ -213,10 +217,78 @@ describe('change password user', () => {
             newPassword: '123456789'
         }
 
-        const response = (await request(app).put('/api/users/changePassword').set('authorization', `Bearer ${token}`).send(thisPassword))
+        const response = await request(app).put('/api/users/changePassword').set('authorization', `Bearer ${token}`).send(thisPassword)
 
         expect(response.status).toBe(401)
         expect(response.body.message).toBe('Invalid old password')
+    })
+})
+
+describe('google login', () => {
+    test('succes google login with status 201', async () => {
+        const newUser = {
+            email: "bwindah352@gmail.com",
+            username: "brando"
+        }
+
+        const response = await request(app).post(`/api/users/googleLogin`).send(newUser)
+
+        console.log(response, "<<<<<< yayaya");
+        expect(response.status).toBe(201)
+        expect(response.body).toHaveProperty('access_token')
+        expect(response.body).toHaveProperty('data')
+        expect(response.body.data.email).toEqual(newUser.email)
+    })
+})
+
+describe('edit user', () => {
+    test('success edit user with status 200', async () => {
+        const newData = {
+            username: 'subang',
+            email: 'mikail@gmail.com'
+        }
+
+        const imagePath = path.join(__dirname, '..', '..', 'backupPic', 'download2.jpg');
+
+        const response = await request(app)
+            .put(`/api/users/editUser`)
+            .set('authorization', `Bearer ${token}`)
+            .field('username', newData.username)
+            .field('email', newData.email)
+            .attach('imageUrl', imagePath)
+
+        expect(response.status).toBe(200)
+        expect(response.body.message).toBe('success')
+    })
+
+    test('failed edit user validation error with status 400', async () => {
+        const newData = {
+            username: '',
+            email: 'mikail@gmail.com'
+        }
+
+        const imagePath = path.join(__dirname, '..', '..', 'backupPic', 'download2.jpg');
+
+        const response = await request(app)
+            .put(`/api/users/editUser`)
+            .set('authorization', `Bearer ${token}`)
+            .field('username', newData.username)
+            .field('email', newData.email)
+            .attach('imageUrl', imagePath)
+
+        expect(response.status).toBe(400)
+        expect(response.body.status).toBe('Validation Failed')
+        expect(response.body.message).toBe('"username" is not allowed to be empty')
+    })
+})
+
+describe('midtrans payment token', () => {
+    test('success get token from midtrans with status 201', async () => {
+        const response = await request(app).post('/api/users/midtransToken').set('authorization', `Bearer ${token}`)
+
+        expect(response.status).toBe(201)
+        expect(response.body).toHaveProperty('token')
+        expect(response.body).toHaveProperty('redirect_url')
     })
 })
 

@@ -12,12 +12,12 @@ jest.mock('react-router-dom', () => ({
 
 describe('Navbar Component', () => {
   test('Correct render', () => {
-    const navbar = render(<Navbar title="Title" locale="en" theme="light" />);
+    const navbar = render(<Navbar title="Title" locale="en" login={true} />);
     expect(navbar.getByTestId('navbar')).toBeInTheDocument();
   });
 
   test('Should match with snapshot', () => {
-    const navbar = render(<Navbar title="Title" locale="en" theme="light" />);
+    const navbar = render(<Navbar title="Title" locale="en" login={true}/>);
     expect(navbar).toMatchSnapshot();
   });
 });

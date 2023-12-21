@@ -1,12 +1,14 @@
 const { handleInternalError, handleValidationError, handleNotFoundError } = require('../helper/errorHandler')
 const { Comment, Meme, User } = require('../models')
 const joi = require('joi')
+const redisClient = require('../helper/redisClient');
 
 exports.addComment = async (req, res) => {
     try {
         const theComment = req.body
         const { memeId } = req.params
         const userId = req.user.id
+
 
         const schema = joi.object({
             comment: joi.string().required()
@@ -20,7 +22,7 @@ exports.addComment = async (req, res) => {
 
         const dataMeme = await Meme.findByPk(memeId)
 
-        if(!dataMeme) {
+        if (!dataMeme) {
             return handleNotFoundError(res, 'Meme');
         }
 
@@ -30,7 +32,15 @@ exports.addComment = async (req, res) => {
             comment: theComment.comment
         })
 
-        res.status(201).json({message: "sukses", theComment})
+        const redisKey = `getComments:${memeId}`
+        const cachedCommentExist = await redisClient.exists(redisKey);
+
+        if (cachedCommentExist) {
+            await redisClient.del(redisKey);
+            console.log('Cached cleared success');
+        }
+
+        res.status(201).json({ message: "sukses", theComment })
     } catch (error) {
         console.log(error);
         return handleInternalError(res)
@@ -40,6 +50,15 @@ exports.addComment = async (req, res) => {
 exports.getAllComment = async (req, res) => {
     try {
         const { memeId } = req.params
+
+        const redisKey = `getComments:${memeId}`
+        const cachedComment = await redisClient.get(redisKey)
+
+        if (cachedComment) {
+            const comments = JSON.parse(cachedComment)
+            return res.status(200).json({ message: 'cached', comments })
+        }
+
         const dataComment = await Comment.findAll({
             where: {
                 memeId
@@ -53,7 +72,9 @@ exports.getAllComment = async (req, res) => {
                 }
             ]
         })
-        
+
+        await redisClient.set(redisKey, JSON.stringify(dataComment), 'EX', 3600)
+
         res.status(200).json(dataComment)
     } catch (error) {
         console.log(error);
@@ -64,19 +85,39 @@ exports.getAllComment = async (req, res) => {
 exports.deleteComment = async (req, res) => {
     try {
         const { commentId } = req.params
-        const dataComment = await Comment.findByPk(commentId)
+        const userId = req.user.id
+        const dataComment = await Comment.findOne({
+            where: {
+                id: commentId,
+                userId
+            },
+            include: [
+                {
+                    model: Meme
+                }
+            ]
+        })
 
-        if(!dataComment) {
+        if (!dataComment) {
             return handleNotFoundError(res, 'Comment');
         }
 
         const result = await Comment.destroy({
             where: {
-                id: commentId
+                id: commentId,
+                userId
             }
         })
 
-        res.status(200).json({message: "sukses delete", dataComment})
+        const redisKey = `getComments:${dataComment.Meme.id}`
+        const cachedCommentExist = await redisClient.exists(redisKey);
+
+        if (cachedCommentExist) {
+            await redisClient.del(redisKey);
+            console.log('Cached cleared success');
+        }
+
+        res.status(200).json({ message: "sukses delete", dataComment })
     } catch (error) {
         console.log(error);
         return handleInternalError(res)

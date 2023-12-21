@@ -29,7 +29,7 @@ function Comment({comments, userId}) {
         <div className={classes.comment}>
             <h4><FormattedMessage id='app_comments' /></h4>
             {
-                comments.map((el) => (
+                comments?.map((el) => (
                     <div key={el.id} className={classes.commentList}>
                         <div className={classes.userComment}>
                             <div className={classes.picture}>
