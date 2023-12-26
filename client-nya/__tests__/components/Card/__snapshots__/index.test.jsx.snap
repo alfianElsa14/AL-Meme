@@ -7,10 +7,11 @@ exports[`Component Card Should match with snapshot 1`] = `
     <div>
       <div
         class="container"
-        data-testid="Card"
+        data-testid="container"
       >
         <div
           class="card"
+          data-testid="card"
         >
           <div
             class="cardList"
@@ -22,9 +23,11 @@ exports[`Component Card Should match with snapshot 1`] = `
             />
             <div
               class="data"
+              data-testid="cardData"
             >
               <p
                 class="title"
+                data-testid="cardTitle"
               >
                 Drake Hotline Bling
               </p>
@@ -42,10 +45,11 @@ exports[`Component Card Should match with snapshot 1`] = `
   "container": <div>
     <div
       class="container"
-      data-testid="Card"
+      data-testid="container"
     >
       <div
         class="card"
+        data-testid="card"
       >
         <div
           class="cardList"
@@ -57,9 +61,11 @@ exports[`Component Card Should match with snapshot 1`] = `
           />
           <div
             class="data"
+            data-testid="cardData"
           >
             <p
               class="title"
+              data-testid="cardTitle"
             >
               Drake Hotline Bling
             </p>

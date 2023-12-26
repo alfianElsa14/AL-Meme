@@ -42,7 +42,7 @@ export function* doDeleteMyMeme({ id }) {
                 icon: 'success',
             });
             const response = yield call(getMyMemes)
-            yield put(setMyMemes(response.myMemeData))
+            yield put(setMyMemes(response))
         }
     } catch (error) {
         console.log(error);

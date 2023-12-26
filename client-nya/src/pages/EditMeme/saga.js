@@ -14,7 +14,13 @@ export function* doEditMeme({ id, data, navigate }) {
         yield put(setMyMemes(result))
         yield call(navigate, '/profile')
     } catch (error) {
-        console.log(error);
+        console.log(error.response.status);
+        if (error.response.status === 400) {
+            const errorMessage = error.response.data.message || "Email or Password required";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("failed edit profile");
+        }
     }
 }
 
@@ -30,7 +36,7 @@ export function* doGenerateEditMeme({ id, data }) {
 }
 
 
-export function* doGetMyMemeById({id}) {
+export function* doGetMyMemeById({ id }) {
     yield put(setLoading(true))
     try {
         const response = yield call(getMyMemeById, id)

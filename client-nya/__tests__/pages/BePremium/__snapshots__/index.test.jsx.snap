@@ -1,0 +1,236 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`page be premium Should match with snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="container"
+        data-testid="bePremiumContainer"
+      >
+        <div
+          class="content"
+          data-testid="bePremiumContent"
+        >
+          <p
+            class="title"
+            data-testid="bePremiumTitle"
+          >
+            Jadi premium
+          </p>
+          <p
+            class="header"
+          >
+            Jadilah premium dan buat meme sebanyak yang Anda inginkan.
+          </p>
+          <p
+            class="price"
+          >
+            IDR 20.000
+            <span>
+              /
+              bulan
+            </span>
+          </p>
+          <div
+            class="profit"
+            data-testid="bePremiumProfit"
+          >
+            <p>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium check css-i4bv87-MuiSvgIcon-root"
+                data-testid="CheckIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                />
+              </svg>
+              Akses 50+ Template Meme Eksklusif!
+            </p>
+            <p>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium check css-i4bv87-MuiSvgIcon-root"
+                data-testid="CheckIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                />
+              </svg>
+              Buat meme sebanyak yang Anda inginkan tanpa batas
+            </p>
+            <p>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium check css-i4bv87-MuiSvgIcon-root"
+                data-testid="CheckIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                />
+              </svg>
+              Anda dapat mengedit meme yang Anda buat
+            </p>
+          </div>
+          <div
+            class="buttonPremium"
+          >
+            <button
+              data-testid="GoPremium"
+            >
+              Go premium
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="container"
+      data-testid="bePremiumContainer"
+    >
+      <div
+        class="content"
+        data-testid="bePremiumContent"
+      >
+        <p
+          class="title"
+          data-testid="bePremiumTitle"
+        >
+          Jadi premium
+        </p>
+        <p
+          class="header"
+        >
+          Jadilah premium dan buat meme sebanyak yang Anda inginkan.
+        </p>
+        <p
+          class="price"
+        >
+          IDR 20.000
+          <span>
+            /
+            bulan
+          </span>
+        </p>
+        <div
+          class="profit"
+          data-testid="bePremiumProfit"
+        >
+          <p>
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium check css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+              />
+            </svg>
+            Akses 50+ Template Meme Eksklusif!
+          </p>
+          <p>
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium check css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+              />
+            </svg>
+            Buat meme sebanyak yang Anda inginkan tanpa batas
+          </p>
+          <p>
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium check css-i4bv87-MuiSvgIcon-root"
+              data-testid="CheckIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+              />
+            </svg>
+            Anda dapat mengedit meme yang Anda buat
+          </p>
+        </div>
+        <div
+          class="buttonPremium"
+        >
+          <button
+            data-testid="GoPremium"
+          >
+            Go premium
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

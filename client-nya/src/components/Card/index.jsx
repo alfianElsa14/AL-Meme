@@ -8,9 +8,12 @@ function Card({ memes, role }) {
 
     return (
         <div
-            data-testid="Card"
+            data-testid="container"
             className={classes.container}>
-            <div className={classes.card}>
+            <div
+                data-testid="card"
+                className={classes.card}
+            >
                 {
                     filteredMemes.map((el) => (
                         <div
@@ -20,8 +23,13 @@ function Card({ memes, role }) {
                             data-testid="navigate-memeDetail"
                         >
                             <img src={el.imageUrl} alt="" />
-                            <div className={classes.data}>
-                                <p className={classes.title}>{el.title}</p>
+                            <div
+                                data-testid="cardData"
+                                className={classes.data}>
+                                <p 
+                                data-testid="cardTitle"
+                                className={classes.title}
+                                >{el.title}</p>
                                 <p className={classes.status}>{el.status}</p>
                             </div>
                         </div>

@@ -21,18 +21,32 @@ function BePremium() {
     }
 
     return (
-        <div className={classes.container}>
-            <div className={classes.content}>
-                <p className={classes.title}><FormattedMessage id='app_be_premium' /></p>
+        <div
+            data-testid="bePremiumContainer"
+            className={classes.container}
+        >
+            <div
+                className={classes.content}
+                data-testid="bePremiumContent"
+            >
+                <p 
+                className={classes.title}
+                data-testid="bePremiumTitle"
+                ><FormattedMessage id='app_be_premium' /></p>
                 <p className={classes.header}><FormattedMessage id='app_go_premium' /></p>
                 <p className={classes.price}>IDR 20.000<span>/<FormattedMessage id='app_month' /></span></p>
-                <div className={classes.profit}>
+                <div 
+                data-testid="bePremiumProfit"
+                className={classes.profit}
+                >
                     <p><CheckIcon className={classes.check} /><FormattedMessage id='app_access_meme' /></p>
                     <p><CheckIcon className={classes.check} /><FormattedMessage id='app_create_as_many' /></p>
                     <p><CheckIcon className={classes.check} /><FormattedMessage id='app_can_edit_meme' /></p>
                 </div>
                 <div className={classes.buttonPremium}>
-                    <button onClick={handlePaymentPremium}>
+                    <button
+                        data-testid="GoPremium"
+                        onClick={handlePaymentPremium}>
                         Go premium
                     </button>
                 </div>

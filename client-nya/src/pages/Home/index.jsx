@@ -36,7 +36,10 @@ const Home = ({ memes, memesCount, role }) => {
 
 
   return (
-    <div className={classes.container}>
+    <div
+      data-testid={`homeContainer`}
+      className={classes.container}
+    >
       <div className={classes.search}>
         <input
           type="search"
@@ -48,7 +51,7 @@ const Home = ({ memes, memesCount, role }) => {
       <InfiniteScroll
         dataLength={memes.length}
         next={fetchMoreData}
-        hasMore={memes.length < memesCount} 
+        hasMore={memes.length < memesCount}
         endMessage={<p>Tidak ada meme lebih lanjut untuk dimuat</p>}
       >
         <Card memes={filterMemesBySearch()} role={role} />

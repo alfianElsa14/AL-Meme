@@ -320,7 +320,7 @@ exports.statusUser = async (req, res) => {
         const updateRole = await User.update(
             {
                 role: 'premium',
-                premiumDate: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000),
+                premiumDate: new Date(new Date().getTime() + 1 * 60 * 1000),
             },
             {
                 where: {

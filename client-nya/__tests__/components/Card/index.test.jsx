@@ -51,11 +51,32 @@ beforeEach(() => {
 })
 
 describe('Component Card', () => {
-    test('Should render correctly', () => {
+    test('Should render container correctly', () => {
         const { getByTestId } = wrapper;
-        const cardComponent = getByTestId('Card');
-        expect(cardComponent).toHaveClass(classes.container);
-        expect(cardComponent).toBeInTheDocument();
+        const cardContainer = getByTestId('container');
+        expect(cardContainer).toHaveClass(classes.container);
+        expect(cardContainer).toBeInTheDocument();
+    });
+
+    test('Should render Card correctly', () => {
+        const { getByTestId } = wrapper;
+        const card = getByTestId('card');
+        expect(card).toHaveClass(classes.card);
+        expect(card).toBeInTheDocument();
+    });
+
+    test('Should render Card data correctly', () => {
+        const { getByTestId } = wrapper;
+        const cardData = getByTestId('cardData');
+        expect(cardData).toHaveClass(classes.data);
+        expect(cardData).toBeInTheDocument();
+    });
+
+    test('Should render Card title correctly', () => {
+        const { getByTestId } = wrapper;
+        const cardData = getByTestId('cardTitle');
+        expect(cardData).toHaveClass(classes.title);
+        expect(cardData).toBeInTheDocument();
     });
 
     test('Should call navigate when card clicked', () => {

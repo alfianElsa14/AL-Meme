@@ -11,7 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
 import classes from './style.module.scss'
 
-function Comment({comments, userId}) {
+function Comment({ comments, userId }) {
     const dispatch = useDispatch()
     const { id } = useParams()
     const [newComment, setNewComment] = useState('');
@@ -26,18 +26,36 @@ function Comment({comments, userId}) {
         dispatch(deleteComment(commentId, id))
     }
     return (
-        <div className={classes.comment}>
+        <div
+            className={classes.comment}
+            data-testid="comment"
+        >
             <h4><FormattedMessage id='app_comments' /></h4>
             {
                 comments?.map((el) => (
-                    <div key={el.id} className={classes.commentList}>
-                        <div className={classes.userComment}>
-                            <div className={classes.picture}>
+                    <div key={el.id} 
+                    data-testid="commentList"
+                    className={classes.commentList}>
+                        <div
+                            className={classes.userComment}
+                            data-testid="userComment"
+                        >
+                            <div
+                                className={classes.picture}
+                                data-testid="picture"
+
+                            >
                                 <img src={`${config.api.host}${el.User.imageUrl}`} alt="" />
                             </div>
                             <div className={classes.isiComment}>
-                                <p className={classes.username}>{el.User.username}</p>
-                                <div className={classes.many}>{el.comment}</div>
+                                <p 
+                                data-testid="username"
+                                className={classes.username}>{el.User.username}</p>
+                                <div 
+                                className={classes.many}
+                                data-testid={`commentText`}
+                                >{el.comment}
+                                </div>
                             </div>
                         </div>
                         <div className={classes.date}>

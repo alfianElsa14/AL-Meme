@@ -24,17 +24,25 @@ function FormLogin() {
         dispatch(googleLogin());
     };
     return (
-        <div className={classes.formContainer}>
+        <div
+            className={classes.formContainer}
+            data-testid="formContainer"
+        >
             <h3><FormattedMessage id="app_login" /></h3>
             <div className={classes.form}>
-                <form action="" onSubmit={handleLogin} className={classes.formLogin}>
+                <form action="" onSubmit={handleLogin}
+                    className={classes.formLogin}
+                    data-testid="formLogin"
+                >
                     <label htmlFor="">Email :</label>
                     <input
+                        data-testid="email"
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)} />
                     <label htmlFor="">Password :</label>
                     <input
+                        data-testid="password"
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)} />
@@ -43,6 +51,7 @@ function FormLogin() {
                     </button>
                 </form>
                 <button
+                    data-testid="google"
                     onClick={handleGoogleLogin}
                     className={classes.googleButton}
                 >
@@ -52,7 +61,10 @@ function FormLogin() {
             </div>
             <p>
                 <FormattedMessage id="app_dont_have_account" />
-                click <span onClick={() => navigate('/register')}>
+                click <span
+                    data-testid="toRegister"
+                    onClick={() => navigate('/register')}
+                >
                     <FormattedMessage id="app_here" />
                 </span>
             </p>

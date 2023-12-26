@@ -42,10 +42,15 @@ function FormRegister() {
     }
 
     return (
-        <div className={classes.formContainer}>
+        <div
+            className={classes.formContainer}
+            data-testid="formContainer"
+        >
             <h3><FormattedMessage id="app_register" /></h3>
             <div className={classes.form}>
-                <form onSubmit={handleSubmit} action="" className={classes.formRegister}>
+                <form
+                    data-testid="formRegister"
+                    onSubmit={handleSubmit} action="" className={classes.formRegister}>
                     <div className={classes.picture}>
                         <img src={tempImage || 'https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'} alt="" />
                         <label htmlFor="image" className={classes.customFileButton}>
@@ -62,7 +67,9 @@ function FormRegister() {
                         </label>
                         <input type="text" id="username" name="username"
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)} />
+                            onChange={(e) => setUsername(e.target.value)} 
+                            data-testid="username"
+                            />
                     </div>
                     <div className={classes.inputItem}>
                         <label htmlFor="email">
@@ -74,6 +81,7 @@ function FormRegister() {
                             name="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            data-testid="email"
                         />
                     </div>
                     <div className={classes.inputItem}>
@@ -86,6 +94,7 @@ function FormRegister() {
                             name="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            data-testid="password"
                         />
                     </div>
                     <button type="submit">
@@ -94,7 +103,9 @@ function FormRegister() {
                 </form>
             </div>
             <p>
-                <FormattedMessage id="app_already_have_an_account" /> click <span onClick={() => navigate('/login')}>
+                <FormattedMessage id="app_already_have_an_account" /> click <span 
+                data-testid="toLogin"
+                onClick={() => navigate('/login')}>
                     <FormattedMessage id="app_here" />
                 </span>
             </p>

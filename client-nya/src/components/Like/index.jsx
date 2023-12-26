@@ -23,11 +23,15 @@ function Like({ likes, userId }) {
   };
 
   return (
-    <div className={classes.like}>
+    <div
+      data-testid="Like"
+      className={classes.like}>
       {userLiked ? (
         <ThumbUpAltIcon onClick={handleLikeSubmit} className={classes.iconLike} />
       ) : (
-        <ThumbUpOffAltIcon onClick={handleLikeSubmit} className={classes.iconLike} />
+        <ThumbUpOffAltIcon onClick={handleLikeSubmit} className={classes.iconLike}
+          data-testid="iconLike"
+        />
       )}
       <p>
         {likes?.like} <FormattedMessage id='app_likes' />

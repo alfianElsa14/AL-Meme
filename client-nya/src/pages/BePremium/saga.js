@@ -4,6 +4,7 @@ import { setMidtransToken } from "./actions";
 import { MIDTRANS_PAYMENT, UPDATE_STATUS_USER } from "./constants";
 import { setRole, setToken, setUser } from "@containers/Client/actions";
 import { setLoading } from "@containers/App/actions";
+import Swal from "sweetalert2";
 
 export function* doMidtransPayment({ cbSuccess }) {
     try {
@@ -25,7 +26,13 @@ export function* doMidtransPayment({ cbSuccess }) {
             }
         });
     } catch (error) {
-        console.log(error);
+        console.log(error.response.status);
+        if (error.response.status === 400) {
+            const errorMessage = error.response.data.message || "Email or Password required";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Request Failed");
+        }
     }
 }
 
