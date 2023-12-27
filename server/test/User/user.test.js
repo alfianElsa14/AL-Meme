@@ -99,7 +99,6 @@ describe('register user', () => {
             .field('password', user.password)
             .attach('imageUrl', imagePath);
 
-        console.log(response, "<<< yahahaha");
         expect(response.status).toBe(400)
         expect(response.body.status).toBe('Validation Failed')
         expect(response.body.message).toBe('"password" length must be at least 6 characters long')
@@ -233,7 +232,6 @@ describe('google login', () => {
 
         const response = await request(app).post(`/api/users/googleLogin`).send(newUser)
 
-        console.log(response, "<<<<<< yayaya");
         expect(response.status).toBe(201)
         expect(response.body).toHaveProperty('access_token')
         expect(response.body).toHaveProperty('data')

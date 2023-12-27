@@ -142,7 +142,6 @@ describe('delete comment', () => {
     test('failed delete comment not found with status 404', async () => {
         const response = await request(app).delete(`/api/comments/deleteComment/99999`).set('authorization', `Bearer ${token}`)
 
-        console.log(response, '<<<< wayaaannsahs');
         expect(response.status).toBe(404)
         expect(response.body.status).toBe('Error')
         expect(response.body.message).toBe('Comment tidak ditemukan')

@@ -11,7 +11,6 @@ async function sendEmail(account) {
 
   const link = `http://localhost:3300/api/users/verifyAcc?token=${account.verifyToken}`;
 
-  const redirectUrl = `http://localhost:3000/login`
 
   var mailOptions = {
     from: "AL'Meme",
@@ -336,7 +335,7 @@ async function sendEmail(account) {
                                     </tr>
                                     <tr>
                                       <td align="center" style="padding: 0; margin: 0; padding-top: 40px; padding-bottom: 40px">
-                                        <h3 style="margin: 0; line-height: 24px; mso-line-height-rule: exactly; font-family: Poppins, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; color: #5d541d">Thanks for joining Pin Meme</h3>
+                                        <h3 style="margin: 0; line-height: 24px; mso-line-height-rule: exactly; font-family: Poppins, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; color: #5d541d">Thanks for joining AL-Meme</h3>
                                         <p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: Poppins, sans-serif; line-height: 27px; color: #5d541d; font-size: 18px"><br /></p>
                                         <p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: Poppins, sans-serif; line-height: 27px; color: #5d541d; font-size: 18px">To finish signing up, please confirm your email address. This ensures we have the right email in case we need to contact you.</p>
                                       </td>

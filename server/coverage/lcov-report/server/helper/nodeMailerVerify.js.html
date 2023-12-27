@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/10</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
-                <span class="quiet">Functions</span>
+                <span class="quiet">Branches</span>
                 <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>2/2</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/10</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -488,8 +488,7 @@
 <a name='L423'></a><a href='#L423'>423</a>
 <a name='L424'></a><a href='#L424'>424</a>
 <a name='L425'></a><a href='#L425'>425</a>
-<a name='L426'></a><a href='#L426'>426</a>
-<a name='L427'></a><a href='#L427'>427</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
+<a name='L426'></a><a href='#L426'>426</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -502,7 +501,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -905,11 +903,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -928,7 +926,6 @@ async function sendEmail(account) {
 &nbsp;
   const link = `http://localhost:3300/api/users/verifyAcc?token=${account.verifyToken}`;
 &nbsp;
-  const redirectUrl = `http://localhost:3000/login`
 &nbsp;
   var mailOptions = {
     from: "AL'Meme",
@@ -1253,7 +1250,7 @@ async function sendEmail(account) {
                                     &lt;/tr&gt;
                                     &lt;tr&gt;
                                       &lt;td align="center" style="padding: 0; margin: 0; padding-top: 40px; padding-bottom: 40px"&gt;
-                                        &lt;h3 style="margin: 0; line-height: 24px; mso-line-height-rule: exactly; font-family: Poppins, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; color: #5d541d"&gt;Thanks for joining Pin Meme&lt;/h3&gt;
+                                        &lt;h3 style="margin: 0; line-height: 24px; mso-line-height-rule: exactly; font-family: Poppins, sans-serif; font-size: 20px; font-style: normal; font-weight: bold; color: #5d541d"&gt;Thanks for joining AL-Meme&lt;/h3&gt;
                                         &lt;p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: Poppins, sans-serif; line-height: 27px; color: #5d541d; font-size: 18px"&gt;&lt;br /&gt;&lt;/p&gt;
                                         &lt;p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: Poppins, sans-serif; line-height: 27px; color: #5d541d; font-size: 18px"&gt;To finish signing up, please confirm your email address. This ensures we have the right email in case we need to contact you.&lt;/p&gt;
                                       &lt;/td&gt;
@@ -1331,11 +1328,11 @@ async function sendEmail(account) {
     &lt;/html&gt;`,
   };
 &nbsp;
-  transporter.sendMail(mailOptions, <span class="fstat-no" title="function not covered" >(e</span>rr, info) =&gt; {
-<span class="cstat-no" title="statement not covered" >    if (err) {</span>
+  transporter.sendMail(mailOptions, (err, info) =&gt; {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
 <span class="cstat-no" title="statement not covered" >      console.log(err);</span>
     } else {
-<span class="cstat-no" title="statement not covered" >      console.log("Email sent: " + info.response);</span>
+      console.log("Email sent: " + info.response);
     }
   });
 }
@@ -1348,7 +1345,7 @@ module.exports = { sendEmail };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-26T13:25:39.063Z
+                at 2023-12-27T08:47:45.804Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

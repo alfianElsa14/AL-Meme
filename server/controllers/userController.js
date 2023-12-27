@@ -122,6 +122,7 @@ exports.login = async (req, res) => {
 exports.googleLogin = async (req, res) => {
     try {
         const { email, username } = req.body
+        const randomPassword = Math.random().toString(36).substring(2, 10);
 
         const [created] = await User.findOrCreate({
             where: {
@@ -131,7 +132,7 @@ exports.googleLogin = async (req, res) => {
                 username,
                 email,
                 imageUrl: false,
-                password: await hash('1234567'),
+                password: hash(randomPassword),
                 role: "basic",
                 verified: true
             },
@@ -143,6 +144,16 @@ exports.googleLogin = async (req, res) => {
             email: created.email,
             role: created.role
         });
+
+        const isExistingUser = created._options.isNewRecord
+
+        if (isExistingUser) {
+            await sendEmailNotif(
+                created.email,
+                'Password Acc AL`Meme',
+                `Your password : ${randomPassword}`
+            );
+        }
 
         res.status(201).json({ access_token: token, data: created });
     } catch (error) {

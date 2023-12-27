@@ -7,14 +7,6 @@ exports.getAllMeme = async (req, res) => {
     try {
         const page = req.query.page || 1;
         const pageSize = 20;
-        // const cacheKey = `allMemes:${page}`
-
-        // const cachedData = await redisClient.get(cacheKey);
-
-        // if (cachedData) {
-        //     const parsedData = JSON.parse(cachedData)
-        //     return res.status(200).json(parsedData)
-        // }
 
         const offset = (page - 1) * pageSize;
 
@@ -34,12 +26,6 @@ exports.getAllMeme = async (req, res) => {
         }) : [];
 
         const allDataMeme = previousData.concat(dataMeme.rows);
-
-        // redisClient.setex(cacheKey, 3600, JSON.stringify({
-        //     cached: true,
-        //     count: dataMeme.count + (page - 1) * pageSize,
-        //     rows: allDataMeme,
-        // }));
 
         res.status(200).json({
             count: dataMeme.count + (page - 1) * pageSize,
