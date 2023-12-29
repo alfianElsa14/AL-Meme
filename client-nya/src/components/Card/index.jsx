@@ -1,6 +1,7 @@
 import React from 'react'
-import classes from './style.module.scss'
 import { useNavigate } from 'react-router-dom'
+
+import classes from './style.module.scss'
 
 function Card({ memes, role }) {
     const navigate = useNavigate()

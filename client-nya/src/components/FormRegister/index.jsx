@@ -36,7 +36,12 @@ function FormRegister() {
         formData.append('username', username);
         formData.append('email', email);
         formData.append('password', password);
-        formData.append('imageUrl', imageUrl);
+
+        if (imageUrl) {
+            formData.append('imageUrl', imageUrl);
+        }
+        
+
 
         dispatch(registerUser(formData, navigate));
     }

@@ -20,6 +20,7 @@ import { Tooltip } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import Avatar from '@mui/material/Avatar';
 import classes from './style.module.scss'
 
 function Profile({ userProfile, myMemes, role }) {
@@ -28,6 +29,7 @@ function Profile({ userProfile, myMemes, role }) {
     const [countdown, setCountdown] = useState(null);
     const [open, setOpen] = useState(false);
     const [selectedMemeId, setSelectedMemeId] = useState(null);
+    const userDefault = `${config.api.host}${userProfile.imageUrl}`
 
     const handleClickOpen = (memeId) => {
         setSelectedMemeId(memeId);
@@ -111,7 +113,10 @@ function Profile({ userProfile, myMemes, role }) {
         <div className={classes.container}>
             <div className={classes.profileWrapper}>
                 <div>
-                    <img src={`${config.api.host}${userProfile.imageUrl}`} alt="Profile" className={classes.img} />
+                    {
+                        userProfile.imageUrl === '0' ? <Avatar className={classes.img}/> : <img src={userDefault} alt="Profile" className={classes.img} />
+                    }
+                    
                 </div>
                 <div className={classes.name}>{userProfile.username}</div>
                 <div className={classes.email}>{userProfile.email}</div>

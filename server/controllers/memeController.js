@@ -5,18 +5,35 @@ const axios = require("axios");
 
 exports.getAllMeme = async (req, res) => {
     try {
+
+        const role = req.user.role
         const page = req.query.page || 1;
         const pageSize = 20;
 
         const offset = (page - 1) * pageSize;
 
-        const dataMeme = await Meme.findAndCountAll({
-            attributes: {
-                exclude: ['text1', 'text2', 'text3', 'text4', 'text5', 'createdAt', 'updatedAt']
-            },
-            limit: pageSize,
-            offset: offset,
-        });
+        let dataMeme;
+
+        if (role !== 'premium') {
+            dataMeme = await Meme.findAndCountAll({
+                where: {
+                    status: 'basic'
+                },
+                attributes: {
+                    exclude: ['text1', 'text2', 'text3', 'text4', 'text5', 'createdAt', 'updatedAt']
+                },
+                limit: pageSize,
+                offset: offset,
+            });
+        } else {
+            dataMeme = await Meme.findAndCountAll({
+                attributes: {
+                    exclude: ['text1', 'text2', 'text3', 'text4', 'text5', 'createdAt', 'updatedAt']
+                },
+                limit: pageSize,
+                offset: offset,
+            });
+        }
 
         const previousData = page > 1 ? await Meme.findAll({
             attributes: {

@@ -34,7 +34,7 @@ exports.register = async (req, res) => {
             return handleExistingRecordError(res, 'Email sudah terdaftar, coba ganti dengan nama lain')
         }
 
-        const uploadedImg = req.file.path
+        const uploadedImg = req?.file?.path
 
         const result = await User.create({
             username: newUser.username,
@@ -331,7 +331,7 @@ exports.statusUser = async (req, res) => {
         const updateRole = await User.update(
             {
                 role: 'premium',
-                premiumDate: new Date(new Date().getTime() + 1 * 60 * 1000),
+                premiumDate: new Date(new Date().getTime() + 15 * 60 * 1000),
             },
             {
                 where: {

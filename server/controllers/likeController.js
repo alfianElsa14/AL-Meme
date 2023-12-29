@@ -25,7 +25,10 @@ exports.getLike = async (req, res) => {
             },
             include: [
                 {
-                    model: User
+                    model: User,
+                    attributes: {
+                        exclude: ['password', 'createdAt', 'updatedAt', 'premiumDate', 'verifyToken', 'verified', 'imageUrl']
+                    }
                 }
             ]
         })

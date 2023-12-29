@@ -11,7 +11,7 @@ import { editUser } from './actions';
 import { selectUserProfile } from '@pages/Profile/selector';
 
 import classes from './style.module.scss'
-import Avatar from '@mui/material/Avatar';
+
 
 function EditProfile({ userProfile }) {
     const dispatch = useDispatch();

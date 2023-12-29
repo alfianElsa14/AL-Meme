@@ -33,7 +33,7 @@ export function* doRegister({ data, navigate }) {
             const errorMessage = error.response.data.message || "Data must be filled in";
             Swal.fire(errorMessage);
         } else {
-            Swal.fire("Invalid Email or Password");
+            Swal.fire("failed register");
         }
     }
 }

@@ -49,12 +49,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     imageUrl: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: 'image is required'
-        }
-      }
+      allowNull: true,
     },
     role: DataTypes.STRING,
     premiumDate: DataTypes.DATE,
