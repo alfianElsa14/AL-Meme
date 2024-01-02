@@ -23,7 +23,7 @@ function MemeDetail({ comments, meme, user, box, imageMeme, likes, myMemes, role
     const userId = user.data.id
 
     const [textInputs, setTextInputs] = useState(Array(box).fill(''));
-    const [memeTitle, setMemeTitle] = useState(meme.title || '');
+    const [memeTitle, setMemeTitle] = useState(meme.meme.title || '');
 
     const handleAddMyMeme = () => {
         if (myMemes.length >= 5 && role !== 'premium') {
@@ -44,6 +44,10 @@ function MemeDetail({ comments, meme, user, box, imageMeme, likes, myMemes, role
         dispatch(getAllComment(id));
         dispatch(getLike(id))
     }, [id])
+
+    useEffect(() => {
+        setMemeTitle(meme.meme.title)
+    }, [meme])
 
     const inputArray = new Array(box).fill(null);
 

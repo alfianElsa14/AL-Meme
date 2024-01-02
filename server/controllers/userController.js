@@ -7,10 +7,15 @@ const { hash, compare } = require('../helper/bcrypt');
 const midtransClient = require('midtrans-client');
 const { sendEmail } = require('../helper/nodeMailerVerify');
 const sendEmailNotif = require('../helper/nodemailerNotifPremium');
+const CryptoJS = require("crypto-js");
+const redisClient = require('../helper/redisClient');
 
 exports.register = async (req, res) => {
     try {
         const newUser = req.body;
+        const decryptPassword = CryptoJS.AES.decrypt(newUser.password, process.env.DECRYPT_CRYPTO).toString(CryptoJS.enc.Utf8)
+
+        newUser.password = decryptPassword
 
         const schema = joi.object({
             username: joi.string().required(),
@@ -48,7 +53,6 @@ exports.register = async (req, res) => {
 
         res.status(201).json({ message: 'register sukses', result })
     } catch (error) {
-        console.log(error);
         return handleInternalError(res)
     }
 }
@@ -68,7 +72,6 @@ exports.verifyAcc = async (req, res) => {
         await data.save();
         res.redirect('http://localhost:3000/login');
     } catch (error) {
-        console.log(error);
         return handleInternalError(res)
     }
 }
@@ -76,6 +79,9 @@ exports.verifyAcc = async (req, res) => {
 exports.login = async (req, res) => {
     try {
         const dataLogin = req.body
+        const decryptPassword = CryptoJS.AES.decrypt(dataLogin.password, process.env.DECRYPT_CRYPTO).toString(CryptoJS.enc.Utf8)
+
+        dataLogin.password = decryptPassword
 
         const schema = joi.object({
             email: joi.string().required(),
@@ -98,14 +104,15 @@ exports.login = async (req, res) => {
             return handleNotFoundError(res, 'User')
         }
 
-        if (!dataUser.verified) {
-            return res.status(403).json({ message: 'Verifikasi email anda sebelum login' })
-        }
 
         let comparePass = compare(dataLogin.password, dataUser.password)
 
         if (!comparePass) {
             return handleLoginError(res)
+        }
+
+        if (!dataUser.verified) {
+            return res.status(403).json({ message: 'Verifikasi email anda sebelum login' })
         }
 
         const { id, email, role } = dataUser
@@ -114,7 +121,6 @@ exports.login = async (req, res) => {
 
         res.status(201).json({ data: dataUser, access_token })
     } catch (error) {
-        console.log(error);
         return handleInternalError(res)
     }
 }
@@ -157,7 +163,6 @@ exports.googleLogin = async (req, res) => {
 
         res.status(201).json({ access_token: token, data: created });
     } catch (error) {
-        console.log(error);
         return handleInternalError(res)
     }
 }
@@ -169,7 +174,6 @@ exports.getAllUsers = async (req, res) => {
         });
         res.status(200).json(users)
     } catch (error) {
-        console.log(error);
         return handleInternalError(res)
     }
 }
@@ -185,7 +189,6 @@ exports.getUserById = async (req, res) => {
 
         res.status(200).json(userData)
     } catch (error) {
-        console.log(error);
         return handleInternalError(res)
     }
 }
@@ -243,7 +246,6 @@ exports.editUser = async (req, res) => {
 
         }
     } catch (error) {
-        console.log(error);
         return handleInternalError(res)
     }
 }
@@ -281,7 +283,6 @@ exports.changePassword = async (req, res) => {
 
         res.status(200).json({ message: 'Change password successfully' });
     } catch (error) {
-        console.log(error);
         return handleInternalError(res)
     }
 }
@@ -331,7 +332,7 @@ exports.statusUser = async (req, res) => {
         const updateRole = await User.update(
             {
                 role: 'premium',
-                premiumDate: new Date(new Date().getTime() + 15 * 60 * 1000),
+                premiumDate: new Date(new Date().getTime() + 5 * 60 * 1000),
             },
             {
                 where: {
@@ -354,7 +355,6 @@ exports.statusUser = async (req, res) => {
 
         res.status(200).json({ message: 'Sukses menjadi premium', data: updatedStatus, access_token });
     } catch (error) {
-        console.log(error);
         return handleInternalError(res);
     }
 }
@@ -393,7 +393,6 @@ exports.midtransPayment = async (req, res) => {
         const midtransToken = await snap.createTransaction(parameter)
         res.status(201).json(midtransToken)
     } catch (error) {
-        console.log(error);
         return handleInternalError(res)
     }
 }

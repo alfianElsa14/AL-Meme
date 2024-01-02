@@ -9,7 +9,12 @@ export function* doGetUserProfile() {
         const response = yield call(userById)
         yield put(setUserProfile(response))
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
 }
 
@@ -18,7 +23,12 @@ export function* doGetMyMemes() {
         const response = yield call(getMyMemes)
         yield put(setMyMemes(response))
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
 }
 
@@ -45,7 +55,12 @@ export function* doDeleteMyMeme({ id }) {
             yield put(setMyMemes(response))
         }
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
 }
 

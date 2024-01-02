@@ -71,7 +71,7 @@ function Profile({ userProfile, myMemes, role }) {
                 document.body.appendChild(link);
                 link.click();
             } catch (err) {
-                console.log(err);
+                Swal.fire(err)
             }
         };
 
@@ -100,8 +100,6 @@ function Profile({ userProfile, myMemes, role }) {
 
                 if (userProfile.role === 'premium') {
                     dispatch(updateStatusUser(() => navigate('/profile')));
-                } else {
-                    console.log("Pengguna sudah menjadi basic");
                 }
 
                 setCountdown(null);
@@ -114,7 +112,7 @@ function Profile({ userProfile, myMemes, role }) {
             <div className={classes.profileWrapper}>
                 <div>
                     {
-                        userProfile.imageUrl === '0' ? <Avatar className={classes.img}/> : <img src={userDefault} alt="Profile" className={classes.img} />
+                        userProfile.imageUrl === '0' ||  userProfile.imageUrl === null ? <Avatar className={classes.img}/> : <img src={userDefault} alt="Profile" className={classes.img} />
                     }
                     
                 </div>
@@ -137,7 +135,6 @@ function Profile({ userProfile, myMemes, role }) {
                             {Math.max(0, countdown.days)} <FormattedMessage id='app_days' />{' '}
                             {Math.max(0, countdown.hours)} <FormattedMessage id='app_hours' />{' '}
                             {Math.max(0, countdown.minutes)} <FormattedMessage id='app_minutes' />{' '}
-                            {Math.max(0, countdown.seconds)} <FormattedMessage id='app_seconds' />
                         </div>
                     </div>
                 )}

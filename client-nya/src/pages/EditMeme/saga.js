@@ -14,7 +14,6 @@ export function* doEditMeme({ id, data, navigate }) {
         yield put(setMyMemes(result))
         yield call(navigate, '/profile')
     } catch (error) {
-        console.log(error.response.status);
         if (error.response.status === 400) {
             const errorMessage = error.response.data.message || "Email or Password required";
             Swal.fire(errorMessage);
@@ -30,7 +29,12 @@ export function* doGenerateEditMeme({ id, data }) {
         const result = yield call(generateMeme, id, data)
         yield put(setImageEdit(result.data.url))
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
     yield put(setLoading(false))
 }
@@ -44,7 +48,12 @@ export function* doGetMyMemeById({ id }) {
         yield put(setBoxEdit(response.Meme.boxCount))
         yield put(setImageEdit(response.imageUrl))
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
     yield put(setLoading(false))
 }

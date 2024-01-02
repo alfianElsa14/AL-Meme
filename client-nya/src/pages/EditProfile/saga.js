@@ -14,7 +14,6 @@ export function* doEditUser({ data, navigate }) {
         yield put(setUserProfile(result))
         yield call(navigate, '/profile')
     } catch (error) {
-        console.log(error.response.status);
         if (error.response.status === 400) {
             const errorMessage = error.response.data.message || "Email or Password required";
             Swal.fire(errorMessage);

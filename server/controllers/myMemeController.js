@@ -16,7 +16,7 @@ exports.getMyMeme = async (req, res) => {
         })
         res.status(200).json(memeData)
     } catch (error) {
-        console.log(error);
+
         return handleInternalError(res)
     }
 }
@@ -44,7 +44,7 @@ exports.getMyMemeById = async (req, res) => {
         res.status(200).json(dataMeme)
 
     } catch (error) {
-        console.log(error);
+
         return handleInternalError(res)
     }
 }
@@ -81,7 +81,7 @@ exports.addMyMeme = async (req, res) => {
 
         res.status(201).json({ message: 'sukses', result })
     } catch (error) {
-        console.log(error);
+
         return handleInternalError(res)
     }
 }
@@ -133,7 +133,7 @@ exports.editMyMeme = async (req, res) => {
 
         res.status(201).json({ message: 'sukses', resultEdit })
     } catch (error) {
-        console.log(error);
+
         return handleInternalError(res)
     }
 }
@@ -158,7 +158,7 @@ exports.deleteMyMeme = async (req, res) => {
 
         res.status(200).json({ message: 'sukses delete', dataMeme })
     } catch (error) {
-        console.log(error);
+
         return handleInternalError(res)
     }
 }

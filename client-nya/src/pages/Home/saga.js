@@ -21,7 +21,12 @@ function* doGetAllMeme({ page }) {
         yield put(setAllMeme(response.rows))
         yield put(setMemesCount(response.count))
     } catch (error) {
-        console.error(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
     yield put(setLoading(false))
 }

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { registerUser } from '@containers/Client/actions'
 
 import classes from './style.module.scss'
+import { Avatar } from '@mui/material';
 
 function FormRegister() {
     const navigate = useNavigate()
@@ -41,8 +42,6 @@ function FormRegister() {
             formData.append('imageUrl', imageUrl);
         }
         
-
-
         dispatch(registerUser(formData, navigate));
     }
 
@@ -57,7 +56,7 @@ function FormRegister() {
                     data-testid="formRegister"
                     onSubmit={handleSubmit} action="" className={classes.formRegister}>
                     <div className={classes.picture}>
-                        <img src={tempImage || 'https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'} alt="" />
+                        <Avatar className={classes.img} src={tempImage} alt="" />
                         <label htmlFor="image" className={classes.customFileButton}>
                             <button>
                                 <FormattedMessage id="app_change" />

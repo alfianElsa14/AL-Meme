@@ -1,7 +1,9 @@
 import { REGISTER_USER } from "@containers/Client/constants";
+import CryptoJS from "crypto-js";
 import { register } from "@domain/api";
 import { call, takeLatest } from "redux-saga/effects";
 import Swal from "sweetalert2";
+import config from "@config/index";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -17,7 +19,9 @@ const Toast = Swal.mixin({
 
 export function* doRegister({ data, navigate }) {
     try {
-        const response = yield call(register, data)
+        data.set('password', CryptoJS.AES.encrypt(data.get('password'), config.api.cryptoEnc).toString())
+        
+        const response = yield call(register, data);
         if (!response) {
             Swal.fire("Registration failed. Please try again.");
         } else {
@@ -28,7 +32,7 @@ export function* doRegister({ data, navigate }) {
             yield call(navigate, '/login')
         }
     } catch (error) {
-        console.log(error.response.status);
+        
         if (error.response.status === 400) {
             const errorMessage = error.response.data.message || "Data must be filled in";
             Swal.fire(errorMessage);

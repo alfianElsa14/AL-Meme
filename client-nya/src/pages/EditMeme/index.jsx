@@ -52,6 +52,9 @@ function EditMeme({ editMeme, boxEdit, imageEdit }) {
         setTextInputs(newTextInputs);
     };
 
+    useEffect(() => {
+        setTitle(editMeme.title)
+    }, [editMeme])
 
     return (
         <div className={classes.container}>

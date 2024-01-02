@@ -30,6 +30,7 @@ USERNAME_IMGFLIP = 'alfian14'
 PASSWORD_IMGFLIP = 'datapalsu123'
 EMAIL_NODEMAILER = 'almeme123455@gmail.com'
 PASSWORD_NODEMAILER = 'lbbn axgg jypv wjql'
+DECRYPT_CRYPTO = 'rahasia'
 
 ```
 
@@ -44,9 +45,3 @@ _Response (500 - Internal Server Error)_
 }
 ```
 ---
-
-
-
-
-
-

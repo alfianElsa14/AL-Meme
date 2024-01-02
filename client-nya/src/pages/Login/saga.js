@@ -6,6 +6,8 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, getIdToken } from "fireba
 import { app } from "@utils/firebaseeConfig";
 import { call, put, takeLatest } from "redux-saga/effects";
 import Swal from "sweetalert2";
+import CryptoJS from "crypto-js";
+import config from "@config/index";
 
 const Toast = Swal.mixin({
     toast: true,
@@ -22,6 +24,9 @@ const Toast = Swal.mixin({
 function* doLogin({ data }) {
     yield put(setLoading(true))
     try {
+
+        data.password = CryptoJS.AES.encrypt(data.password, config.api.cryptoEnc).toString()
+
         const response = yield call(login, data)
         if (!response) {
             Swal.fire("Invalid Email, Password")
@@ -36,8 +41,7 @@ function* doLogin({ data }) {
             });
         }
     } catch (error) {
-        console.log(error.response.status);
-        if (error.response.status === 400) {
+        if (error.response.status === 400 || error.response.status === 403) {
             const errorMessage = error.response.data.message || "Email or Password required";
             Swal.fire(errorMessage);
         } else {
@@ -74,7 +78,12 @@ export function* doGoogleLogin() {
             });
         }
     } catch (error) {
-        console.log(error);
+        if (error.response.status === 400) {
+            const errorMessage = error.response.data.message || "Email or Password required";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Invalid Email or Password");
+        }
     }
 }
 

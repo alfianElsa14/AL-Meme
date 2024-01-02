@@ -23,10 +23,15 @@ export function* doGetMemeById({ id }) {
     try {
         const response = yield call(getMemeById, id)
         yield put(setMemeById(response))
-        yield put(setBoxMeme(response.boxCount))
-        yield put(setImageMeme(response.imageUrl))
+        yield put(setBoxMeme(response.meme.boxCount))
+        yield put(setImageMeme(response.resultImage))
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
     yield put(setLoading(false))
 }
@@ -37,7 +42,12 @@ export function* doGenerateMeme({ id, data }) {
         const result = yield call(generateMeme, id, data)
         yield put(setImageMeme(result.data.url))
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
     yield put(setLoading(false))
 }
@@ -47,7 +57,12 @@ export function* doGetAllComment({ id }) {
         const response = yield call(getAllComment, id)
         yield put(setAllComment(response.comments))
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
 }
 
@@ -57,7 +72,12 @@ export function* doAddComment({ id, data }) {
         const result = yield call(getAllComment, id)
         yield put(setAllComment(result))
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
 }
 
@@ -84,7 +104,12 @@ export function* doDeleteComment({ commentId, memeId }) {
             yield put(setAllComment(updatedComment));
         }
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
 }
 
@@ -93,7 +118,12 @@ export function* doGetLike({ id }) {
         const result = yield call(getLike, id)
         yield put(setLike(result))
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
 }
 
@@ -103,7 +133,12 @@ export function* doAddLike({ id }) {
         const result = yield call(getLike, id)
         yield put(setLike(result))
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
 }
 
@@ -113,7 +148,12 @@ export function* doRemoveLike({ id }) {
         const result = yield call(getLike, id)
         yield put(setLike(result))
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
 }
 
@@ -129,7 +169,7 @@ export function* doAddMyMemes({ id, data, navigate }) {
         yield put(setMyMemes(result))
         yield call(navigate, '/profile')
     } catch (error) {
-        console.log(error.response);
+        
         if (error?.response.status === 400) {
             const errorMessage = error.response.data.message || "Data must be filled in";
             Swal.fire(errorMessage);

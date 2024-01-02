@@ -11,7 +11,7 @@ exports.handleExistingRecordError = (res, message) => {
 };
 
 exports.handleLoginError = (res) => {
-    res.status(401).json({ status: 'Error', message: `Invalid Email or Password` });
+    res.status(400).json({ status: 'Error', message: `Invalid Email or Password` });
 };
 
 exports.handleNotFoundError = (res, data) => {

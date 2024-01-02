@@ -15,18 +15,9 @@ export function* doMidtransPayment({ cbSuccess }) {
             onSuccess: () => {
                 cbSuccess && cbSuccess()
             },
-            onPending: function (result) {
-                console.log('Pembayaran tertunda:', result);
-            },
-            onError: function (result) {
-                console.log('Pembayaran gagal:', result);
-            },
-            onClose: function () {
-                console.log('Widget ditutup tanpa menyelesaikan pembayaran');
-            }
         });
     } catch (error) {
-        console.log(error.response.status);
+        
         if (error.response.status === 400) {
             const errorMessage = error.response.data.message || "Email or Password required";
             Swal.fire(errorMessage);
@@ -45,7 +36,12 @@ export function* doUpdateStatusUser({ navigate }) {
         yield put(setToken(response.access_token))
         yield call(navigate, '/profile')
     } catch (error) {
-        console.log(error);
+        if (error?.response?.data) {
+            const errorMessage = error?.response?.data?.message || "Data must be filled in";
+            Swal.fire(errorMessage);
+        } else {
+            Swal.fire("Internal Server Error");
+        }
     }
     yield put(setLoading(false))
 }

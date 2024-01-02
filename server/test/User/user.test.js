@@ -1,4 +1,5 @@
 const request = require('supertest');
+const CryptoJS =require("crypto-js")
 const app = require('../../app');
 const { sequelize } = require('../../models/index');
 const { queryInterface } = sequelize;
@@ -49,6 +50,8 @@ describe('register user', () => {
             password: '1234567',
         };
 
+         user.password = CryptoJS.AES.encrypt(user.password, process.env.DECRYPT_CRYPTO).toString()
+
         const imagePath = path.join(__dirname, '..', '..', 'backupPic', 'download1.jpg');
 
         const response = await request(app)
@@ -68,6 +71,8 @@ describe('register user', () => {
             email: 'test@gmail.com',
             password: '1234567',
         };
+
+        user.password = CryptoJS.AES.encrypt(user.password, process.env.DECRYPT_CRYPTO).toString()
 
         const imagePath = path.join(__dirname, '..', '..', 'backupPic', 'download1.jpg');
 
@@ -90,6 +95,8 @@ describe('register user', () => {
             password: '123',
         };
 
+        user.password = CryptoJS.AES.encrypt(user.password, process.env.DECRYPT_CRYPTO).toString()
+
         const imagePath = path.join(__dirname, '..', '..', 'backupPic', 'download1.jpg');
 
         const response = await request(app)
@@ -110,7 +117,7 @@ describe('login user', () => {
 
         const user = {
             email: 'mikail@gmail.com',
-            password: '1234567',
+            password: 'U2FsdGVkX1+gtomjXAWobL1TkMNXjvbOBTVIsuWCNhs=',
         }
 
         const response = await request(app).post('/api/users/login').send(user)
@@ -124,7 +131,7 @@ describe('login user', () => {
     test('failed login with status 404', async () => {
         const user = {
             email: 'mikl@gmail.com',
-            password: '123457',
+            password: 'U2FsdGVkX1+gtomjXAWobL1TkMNXjvbOBTVIsuWCNhs=',
         }
 
         const response = await request(app).post('/api/users/login').send(user)
@@ -133,15 +140,15 @@ describe('login user', () => {
         expect(response.body.message).toBe("User tidak ditemukan")
     })
 
-    test('failed login with status 401', async () => {
+    test('failed login with status 400', async () => {
         const user = {
             email: 'mikail@gmail.com',
-            password: '123457as2',
+            password: 'U2FsdGVkX1/Ld3evojHvJ6bJUmDO+MPLWDPv1fKTDHk=',
         }
 
         const response = await request(app).post('/api/users/login').send(user)
 
-        expect(response.status).toBe(401)
+        expect(response.status).toBe(400)
         expect(response.body.message).toBe("Invalid Email or Password")
     })
 })

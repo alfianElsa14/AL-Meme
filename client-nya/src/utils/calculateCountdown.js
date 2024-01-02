@@ -9,7 +9,7 @@ const calculateCountdown = (userProfile, setCountdown) => {
         const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-        if (days >= 0 && hours >= 0 && minutes >= 0 && seconds >= 0) {
+        if (days >= 0 && hours >= 0 && minutes >= 0) {
             setCountdown({ days, hours, minutes, seconds });
         } else {
             setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });

@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.33% </span>
+                <span class="strong">7.69% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/36</span>
+                <span class='fraction'>3/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.57% </span>
+                <span class="strong">7.89% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/35</span>
+                <span class='fraction'>3/38</span>
             </div>
         
             
@@ -146,7 +146,18 @@
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,6 +181,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -187,7 +201,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -223,6 +236,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -237,6 +255,8 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, getIdToken } from "fireba
 import { app } from "@utils/firebaseeConfig";
 import { call, put, takeLatest } from "redux-saga/effects";
 import Swal from "sweetalert2";
+import CryptoJS from "crypto-js";
+import config from "@config/index";
 &nbsp;
 const Toast = Swal.mixin({
     toast: true,
@@ -253,6 +273,9 @@ const Toast = Swal.mixin({
 function* <span class="fstat-no" title="function not covered" >doLogin(</span>{ data }) {
 <span class="cstat-no" title="statement not covered" >    yield put(setLoading(true))</span>
 <span class="cstat-no" title="statement not covered" >    try {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        data.password = CryptoJS.AES.encrypt(data.password, config.api.cryptoEnc).toString()</span>
+&nbsp;
         const response = <span class="cstat-no" title="statement not covered" >yield call(login, data)</span>
 <span class="cstat-no" title="statement not covered" >        if (!response) {</span>
 <span class="cstat-no" title="statement not covered" >            Swal.fire("Invalid Email, Password")</span>
@@ -267,8 +290,7 @@ function* <span class="fstat-no" title="function not covered" >doLogin(</span>{ 
             });
         }
     } catch (error) {
-<span class="cstat-no" title="statement not covered" >        console.log(error.response.status);</span>
-<span class="cstat-no" title="statement not covered" >        if (error.response.status === 400) {</span>
+<span class="cstat-no" title="statement not covered" >        if (error.response.status === 400 || error.response.status === 403) {</span>
             const errorMessage = <span class="cstat-no" title="statement not covered" >error.response.data.message || "Email or Password required";</span>
 <span class="cstat-no" title="statement not covered" >            Swal.fire(errorMessage);</span>
         } else {
@@ -305,7 +327,12 @@ export function* <span class="fstat-no" title="function not covered" >doGoogleLo
             });
         }
     } catch (error) {
-<span class="cstat-no" title="statement not covered" >        console.log(error);</span>
+<span class="cstat-no" title="statement not covered" >        if (error.response.status === 400) {</span>
+            const errorMessage = <span class="cstat-no" title="statement not covered" >error.response.data.message || "Email or Password required";</span>
+<span class="cstat-no" title="statement not covered" >            Swal.fire(errorMessage);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            Swal.fire("Invalid Email or Password");</span>
+        }
     }
 }
 &nbsp;
@@ -319,7 +346,7 @@ export function* loginSaga() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-12-28T01:52:49.606Z
+                at 2024-01-02T08:27:37.432Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

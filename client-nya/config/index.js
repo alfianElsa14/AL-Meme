@@ -9,6 +9,7 @@ const env = { production, development, test }[nodeENV];
 const config = {
   api: {
     host: env.API_HOST,
+    cryptoEnc: env.CRYPTO_ENCRYPT
   },
 };
 

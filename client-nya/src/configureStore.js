@@ -8,7 +8,6 @@ import { peristConfig } from './persistence';
 
 const initState = {};
 
-// eslint-disable-next-line default-param-last
 const configureStore = (initialState = {}) => {
   let composeEnhancers = compose;
   const reduxSagaMonitorOptions = {

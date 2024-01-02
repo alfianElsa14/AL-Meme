@@ -17,7 +17,7 @@ exports.authentication = async (req, res, next) => {
 
         next()
     } catch (error) {
-        console.log(error);
+        
         return handleInternalError(res)
     }
 }
@@ -33,7 +33,7 @@ exports.authorizationEditMeme = async (req, res, next) => {
 
         next()
     } catch (error) {
-        console.log(error);
+        
         return handleInternalError(res)
     }
 }
@@ -65,7 +65,7 @@ exports.authorizationAddMyMeme = async (req, res, next) => {
         next()
 
     } catch (error) {
-        console.log(error);
+        
         return handleInternalError(res)
     }
 }

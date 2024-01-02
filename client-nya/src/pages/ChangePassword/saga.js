@@ -26,7 +26,6 @@ export function* doChangePasswordUser({ data, navigate }) {
             yield call(navigate, '/profile')
         }
     } catch (error) {
-        console.log(error.response.status);
         if (error.response.status === 400) {
             const errorMessage = error.response.data.message || "Password required";
             Swal.fire(errorMessage);

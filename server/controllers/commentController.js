@@ -37,12 +37,11 @@ exports.addComment = async (req, res) => {
 
         if (cachedCommentExist) {
             await redisClient.del(redisKey);
-            console.log('Cached cleared success');
         }
 
         res.status(201).json({ message: "sukses", theComment })
     } catch (error) {
-        console.log(error);
+        
         return handleInternalError(res)
     }
 }
@@ -83,7 +82,7 @@ exports.getAllComment = async (req, res) => {
 
         res.status(200).json(dataComment)
     } catch (error) {
-        console.log(error);
+        
         return handleInternalError(res)
     }
 }
@@ -120,12 +119,11 @@ exports.deleteComment = async (req, res) => {
 
         if (cachedCommentExist) {
             await redisClient.del(redisKey);
-            console.log('Cached cleared success');
         }
 
         res.status(200).json({ message: "sukses delete", dataComment })
     } catch (error) {
-        console.log(error);
+        
         return handleInternalError(res)
     }
 }

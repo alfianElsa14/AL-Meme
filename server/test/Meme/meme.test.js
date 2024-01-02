@@ -90,8 +90,8 @@ describe('get meme by id', () => {
         const response = await request(app).get(`/api/memes/detailMeme/${memeId}`).set('authorization', `Bearer ${token}`)
 
         expect(response.status).toBe(200)
-        expect(response.body).toHaveProperty('title')
-        expect(response.body).toHaveProperty('imageUrl')
+        expect(response.body).toHaveProperty('meme')
+        expect(response.body).toHaveProperty('resultImage')
     })
 
     test('failed get meme by id with status 404', async () => {

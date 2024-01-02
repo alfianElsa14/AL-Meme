@@ -49,7 +49,7 @@ exports.getAllMeme = async (req, res) => {
             rows: allDataMeme,
         });
     } catch (error) {
-        console.log(error);
+
         return handleInternalError(res)
     }
 }
@@ -63,9 +63,35 @@ exports.getMemeById = async (req, res) => {
             return handleNotFoundError(res, 'Meme');
         }
 
-        res.status(200).json(meme)
+        const USERNAME = process.env.USERNAME_IMGFLIP;
+        const PASSWORD = process.env.PASSWORD_IMGFLIP;
+        const arrText = [];
+
+        for (let i = 1; i <= 5; i++) {
+            arrText.push({ text: `Text ${i}` });
+        }
+
+        
+        const otherMemeId = meme.otherId;
+
+        const result = await axios.post(
+            'https://api.imgflip.com/caption_image',
+            null,
+            {
+                params: {
+                    template_id: otherMemeId,
+                    username: USERNAME,
+                    password: PASSWORD,
+                    boxes: arrText
+                },
+            }
+        );
+
+        const resultImage = result.data.data.url;
+
+        res.status(200).json({meme, resultImage})
     } catch (error) {
-        console.log(error);
+
         return handleInternalError(res)
     }
 }
@@ -121,7 +147,45 @@ exports.generateMeme = async (req, res) => {
         res.status(201).json(resultImage)
 
     } catch (error) {
-        console.log(error);
+
+        return handleInternalError(res)
+    }
+}
+
+
+exports.textMemeById = async (req, res) => {
+    try {
+        const { memeId } = req.params;
+
+        const USERNAME = process.env.USERNAME_IMGFLIP;
+        const PASSWORD = process.env.PASSWORD_IMGFLIP;
+        const arrText = [];
+
+        for (let i = 1; i <= 5; i++) {
+            arrText.push({ text: `Text ${i}` });
+        }
+
+        const dataMeme = await Meme.findByPk(memeId);
+        const otherMemeId = dataMeme.otherId;
+
+        const result = await axios.post(
+            'https://api.imgflip.com/caption_image',
+            null,
+            {
+                params: {
+                    template_id: otherMemeId,
+                    username: USERNAME,
+                    password: PASSWORD,
+                    boxes: arrText
+                },
+            }
+        );
+
+        const resultImage = result.data;
+        res.status(201).json(resultImage);
+
+    } catch (error) {
+
         return handleInternalError(res)
     }
 }
