@@ -25,11 +25,11 @@ _Server_
 
 ```
 JWT_SECRET_KEY = 'Rahasia'
-SERVER_KEY_MIDTRANS = 'SB-Mid-server-4-lfGto43qBv8JfHyBuIc2Uc'
+SERVER_KEY_MIDTRANS = 'SB-Mid-server-4-lfGto43qBv8J2342yBuIc2Uc'
 USERNAME_IMGFLIP = 'alfian14'
-PASSWORD_IMGFLIP = 'datapalsu123'
+PASSWORD_IMGFLIP = 'datapalsu'
 EMAIL_NODEMAILER = 'almeme123455@gmail.com'
-PASSWORD_NODEMAILER = 'lbbn axgg jypv wjql'
+PASSWORD_NODEMAILER = 'lbbn ayyg jypv wjql'
 DECRYPT_CRYPTO = 'rahasia'
 
 ```
