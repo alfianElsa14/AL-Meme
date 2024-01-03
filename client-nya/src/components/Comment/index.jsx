@@ -8,7 +8,7 @@ import { addComment, deleteComment } from '@pages/MemeDetail/actions';
 import config from '@config/index';
 
 import DeleteIcon from '@mui/icons-material/Delete';
-import { IconButton } from '@mui/material';
+import { Avatar, IconButton } from '@mui/material';
 import classes from './style.module.scss'
 
 function Comment({ comments, userId }) {
@@ -45,7 +45,7 @@ function Comment({ comments, userId }) {
                                 data-testid="picture"
 
                             >
-                                <img src={`${config.api.host}${el.User.imageUrl}`} alt="" />
+                                <Avatar className={classes.img} src={`${config.api.host}${el.User.imageUrl}`} alt="" />
                             </div>
                             <div className={classes.isiComment}>
                                 <p 

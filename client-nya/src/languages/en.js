@@ -42,7 +42,7 @@ export default {
   app_new_password: 'New password',
   app_be_premium: 'Be premium',
 
-  app_go_premium: 'Go premium and make as many memes as you want .',
+  app_go_premium: 'Go premium for 30 days and make as many memes as you want .',
   app_access_meme: 'Access 50+ Exclusive Meme Templates!',
   app_create_as_many: 'Create as many memes as you want without limits',
   app_can_edit_meme: 'You can edit the memes you have created',

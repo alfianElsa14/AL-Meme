@@ -34,13 +34,14 @@
 
 
             img {
-                max-width: 100px;
+                max-width: 150px;
                 object-fit: cover;
                 border: none;
                 border-radius: 5px;
 
                 @include apply-at-md-size {
-                    max-width: 200px;
+                    max-width: 500px;
+                    max-height: 300px;
                 }
             }
 
@@ -63,8 +64,8 @@
 
         .cardList:hover {
             transform: scale(1.05);
-            color: $color-black;
-            background: $color-strawberry-red
+            color: $color-harlequin;
+            background: $color-purplish-blue
         }
     }
 }

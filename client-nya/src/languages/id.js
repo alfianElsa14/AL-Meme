@@ -42,7 +42,7 @@ export default {
   app_new_password: 'Password baru',
   app_be_premium: 'Jadi premium',
 
-  app_go_premium: 'Jadilah premium dan buat meme sebanyak yang Anda inginkan.',
+  app_go_premium: 'Jadilah premium selama 30 hari dan buat meme sebanyak yang Anda inginkan .',
   app_access_meme: 'Akses 50+ Template Meme Eksklusif!',
   app_create_as_many: 'Buat meme sebanyak yang Anda inginkan tanpa batas',
   app_can_edit_meme: 'Anda dapat mengedit meme yang Anda buat',
